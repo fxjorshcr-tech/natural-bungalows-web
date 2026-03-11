@@ -1,6 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
+const carouselImages = [
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp', caption: 'Bungalows rodeados de naturaleza' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp', caption: 'Interior completamente equipado' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp', caption: 'Jardines tropicales' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior4.webp', caption: 'Habitacion con cama extragrande' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp', caption: 'Terraza con vistas al volcan' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior5.webp', caption: 'Cocina totalmente equipada' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior7.webp', caption: 'Vista exterior del bungalow' },
+  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior6.webp', caption: 'Bano privado completo' },
+];
 
 export default function Reservar() {
   const [selectedBungalow, setSelectedBungalow] = useState('');
@@ -12,6 +23,20 @@ export default function Reservar() {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 4000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +54,26 @@ export default function Reservar() {
       <section className="section">
         <div className="section-inner">
           <div className="reservation-wrapper">
+            <div className="reservar-carousel">
+              <div className="reservar-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                {carouselImages.map((img, i) => (
+                  <div key={i} className="reservar-carousel-slide">
+                    <img src={img.src} alt={img.caption} />
+                    <div className="reservar-carousel-overlay">
+                      <p>{img.caption}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="reservar-nav prev" onClick={prevSlide}>&#8249;</button>
+              <button className="reservar-nav next" onClick={nextSlide}>&#8250;</button>
+              <div className="reservar-dots">
+                {carouselImages.map((_, i) => (
+                  <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
+                ))}
+              </div>
+            </div>
+
             <h2
               style={{
                 fontFamily: 'var(--font-heading)',

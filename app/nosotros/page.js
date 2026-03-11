@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ContactForm from '../components/ContactForm';
 
 export default function Nosotros() {
@@ -36,6 +37,14 @@ export default function Nosotros() {
                 desde la cocina totalmente equipada hasta la terraza privada con
                 vistas al volcan, para que tu experiencia sea inolvidable.
               </p>
+              <div className="about-buttons">
+                <Link href="/reservar" className="btn-primary" style={{ border: 'none', fontFamily: 'var(--font-body)' }}>
+                  Reservar ahora
+                </Link>
+                <Link href="/contacto" className="btn-secondary">
+                  Contactanos
+                </Link>
+              </div>
             </div>
             <div className="about-img">
               <img
@@ -133,6 +142,18 @@ export default function Nosotros() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ textAlign: 'center' }}>
+        <div className="section-inner">
+          <div className="section-header">
+            <h2>Vive la experiencia Natura</h2>
+            <p>Reserva tu bungalow y descubre todo lo que La Fortuna tiene para ofrecerte</p>
+          </div>
+          <Link href="/reservar" className="btn-primary" style={{ border: 'none', fontFamily: 'var(--font-body)' }}>
+            Reservar ahora
+          </Link>
         </div>
       </section>
 

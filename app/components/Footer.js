@@ -5,7 +5,11 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <h3>Natura Bungalows</h3>
+          <img
+              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png"
+              alt="Natura Bungalows"
+              style={{ height: '60px', width: 'auto', marginBottom: '0.75rem', filter: 'brightness(0) invert(1)' }}
+            />
           <p>
             Bungalows de lujo rodeados de naturaleza con vistas al Volcan Arenal.
             La Fortuna, San Carlos, Costa Rica.

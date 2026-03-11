@@ -87,7 +87,7 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-bg">
           <img
-            src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior.webp"
+            src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp"
             alt="Natura Bungalows - Vista exterior"
           />
         </div>
@@ -119,9 +119,14 @@ export default function HomePage() {
               <p>
                 Natura Bungalows es un proyecto familiar creado con amor por Jose y Yancy, dos costarricenses apasionados por ofrecer un servicio de calidad. Nuestro objetivo es que cada huesped viva una experiencia unica en La Fortuna, rodeado de la belleza natural del Volcan Arenal. Desde el primer momento nos dedicamos a cuidar cada detalle para que te sientas como en casa, mientras disfrutas de una estadia inolvidable en el corazon de Costa Rica.
               </p>
-              <Link href="/nosotros" className="btn-secondary">
-                Conoce nuestra historia
-              </Link>
+              <div className="about-buttons">
+                <Link href="/nosotros" className="btn-secondary">
+                  Conoce nuestra historia
+                </Link>
+                <Link href="/reservar" className="btn-primary" style={{ border: 'none' }}>
+                  Reservar ahora
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -163,6 +168,12 @@ export default function HomePage() {
             />
           </div>
         )}
+
+        <div className="gallery-cta">
+          <Link href="/reservar" className="btn-primary">
+            Reservar tu estadia
+          </Link>
+        </div>
       </section>
 
       {/* AMENITIES */}
@@ -181,12 +192,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* LA FORTUNA */}
+      <section className="section fortuna-section">
+        <div className="fortuna-grid">
+          <div className="fortuna-img">
+            <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-tour-visit.webp" alt="Volcan Arenal, La Fortuna" />
+          </div>
+          <div className="fortuna-text">
+            <h2>Descubre La Fortuna</h2>
+            <p className="subtitle">El destino mas visitado de Costa Rica</p>
+            <p>La Fortuna de San Carlos es un paraiso tropical al pie del majestuoso Volcan Arenal, uno de los volcanes mas activos y emblematicos de Costa Rica. Esta pequena ciudad se ha convertido en el epicentro del turismo de aventura y naturaleza del pais.</p>
+            <p>Rodeada de selva tropical, rios cristalinos y una biodiversidad asombrosa, La Fortuna ofrece una combinacion unica de aventura, relajacion y cultura costarricense. Desde aguas termales naturales calentadas por el volcan hasta cascadas espectaculares, cada rincon esconde una experiencia inolvidable.</p>
+            <div className="fortuna-highlights">
+              <div className="fortuna-highlight">
+                <span>🌋</span> Volcan Arenal activo
+              </div>
+              <div className="fortuna-highlight">
+                <span>♨️</span> Aguas termales naturales
+              </div>
+              <div className="fortuna-highlight">
+                <span>🌊</span> Cascadas y rios
+              </div>
+              <div className="fortuna-highlight">
+                <span>🌿</span> Selva tropical virgen
+              </div>
+              <div className="fortuna-highlight">
+                <span>🦜</span> Biodiversidad unica
+              </div>
+              <div className="fortuna-highlight">
+                <span>🌄</span> Vistas espectaculares
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ACTIVITIES */}
       <section className="section section-dark">
         <div className="section-header">
           <h2>Actividades en La Fortuna</h2>
-          <p>Te ayudamos a coordinar tu aventura perfecta</p>
         </div>
+        <p className="activities-intro">
+          La Fortuna es mucho mas que un destino: es una experiencia. Con decenas de actividades para todos los gustos, desde aventuras extremas hasta paseos tranquilos por la naturaleza, aqui siempre hay algo nuevo por descubrir. Nosotros te ayudamos a coordinar cada detalle para que disfrutes al maximo.
+        </p>
         <div className="activities-grid">
           {activities.map((activity, index) => (
             <div key={index} className="activity-card">
@@ -197,6 +245,11 @@ export default function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="gallery-cta">
+          <Link href="/reservar" className="btn-primary" style={{ color: 'white', borderColor: 'white' }}>
+            Planifica tu aventura
+          </Link>
         </div>
       </section>
 

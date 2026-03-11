@@ -20,7 +20,11 @@ export default function Header() {
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="header-inner">
           <Link href="/" className="logo">
-            Natura <span>Bungalows</span>
+            <img
+              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png"
+              alt="Natura Bungalows"
+              className="logo-img"
+            />
           </Link>
           <nav className="nav">
             <Link href="/">Inicio</Link>
