@@ -46,38 +46,32 @@ export default function Reservar() {
 
   return (
     <>
-      <div className="page-hero">
-        <div className="page-hero-bg">
-          <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior2.webp" alt="Natura Bungalows" />
+      <div className="reservar-carousel" style={{ marginTop: 0 }}>
+        <div className="reservar-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          {carouselImages.map((img, i) => (
+            <div key={i} className="reservar-carousel-slide">
+              <img src={img.src} alt={img.caption} />
+              <div className="reservar-carousel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 30%, transparent 60%)' }}>
+                <div style={{ width: '100%' }}>
+                  <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', color: 'white', marginBottom: '0.3rem', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>Reservar</h1>
+                  <p style={{ fontSize: '1.2rem' }}>{img.caption}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="page-hero-overlay" />
-        <h1>Reservar</h1>
-        <p>Selecciona tu bungalow y fechas de estadia</p>
+        <button className="reservar-nav prev" onClick={prevSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8249;</button>
+        <button className="reservar-nav next" onClick={nextSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8250;</button>
+        <div className="reservar-dots">
+          {carouselImages.map((_, i) => (
+            <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
+          ))}
+        </div>
       </div>
 
       <section className="section">
         <div className="section-inner">
           <div className="reservation-wrapper">
-            <div className="reservar-carousel">
-              <div className="reservar-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                {carouselImages.map((img, i) => (
-                  <div key={i} className="reservar-carousel-slide">
-                    <img src={img.src} alt={img.caption} />
-                    <div className="reservar-carousel-overlay">
-                      <p>{img.caption}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button className="reservar-nav prev" onClick={prevSlide}>&#8249;</button>
-              <button className="reservar-nav next" onClick={nextSlide}>&#8250;</button>
-              <div className="reservar-dots">
-                {carouselImages.map((_, i) => (
-                  <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
-                ))}
-              </div>
-            </div>
-
             <h2
               style={{
                 fontFamily: 'var(--font-heading)',

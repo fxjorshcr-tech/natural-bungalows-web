@@ -50,10 +50,22 @@ const reviews = [
   { name: 'Rosa', country: 'España', text: 'El bungalow es una maravilla. La zona es muy tranquila, solo hay 3 bungalows. La habitacion es preciosa con todo nuevo.' },
 ];
 
+const aboutCarouselImgs = [
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior4.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior7.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior5.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior9.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior6.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior10.webp',
+];
+
 export default function HomePage() {
   const [lightboxImage, setLightboxImage] = useState(null);
   const [currentReview, setCurrentReview] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
+  const [aboutSlide, setAboutSlide] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,6 +92,13 @@ export default function HomePage() {
     }, 5000);
     return () => clearInterval(interval);
   }, [nextReview]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAboutSlide((prev) => (prev + 1) % aboutCarouselImgs.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -170,15 +189,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="about-enhanced-imgs-row">
-            <div className="about-enhanced-img-small">
-              <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp" alt="Interior del bungalow" />
+          <div className="about-carousel">
+            <div className="about-carousel-track" style={{ transform: `translateX(-${aboutSlide * 100}%)` }}>
+              {aboutCarouselImgs.map((src, i) => (
+                <div key={i} className="about-carousel-slide">
+                  <img src={src} alt={`Natura Bungalows ${i + 1}`} />
+                </div>
+              ))}
             </div>
-            <div className="about-enhanced-img-small">
-              <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp" alt="Terraza con vistas" />
-            </div>
-            <div className="about-enhanced-img-small">
-              <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior4.webp" alt="Habitacion" />
+            <button className="reservar-nav prev" onClick={() => setAboutSlide((prev) => (prev - 1 + aboutCarouselImgs.length) % aboutCarouselImgs.length)}>&#8249;</button>
+            <button className="reservar-nav next" onClick={() => setAboutSlide((prev) => (prev + 1) % aboutCarouselImgs.length)}>&#8250;</button>
+            <div className="reservar-dots" style={{ bottom: '1.2rem' }}>
+              {aboutCarouselImgs.map((_, i) => (
+                <button key={i} className={`reservar-dot${i === aboutSlide ? ' active' : ''}`} onClick={() => setAboutSlide(i)} />
+              ))}
             </div>
           </div>
 
