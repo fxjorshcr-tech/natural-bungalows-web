@@ -4,7 +4,11 @@ import ContactForm from '../components/ContactForm';
 export default function Nosotros() {
   return (
     <>
-      <div className="page-hero" style={{ padding: '2rem' }}>
+      <div className="page-hero">
+        <div className="page-hero-bg">
+          <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp" alt="Natura Bungalows" />
+        </div>
+        <div className="page-hero-overlay" />
         <h1>Nuestra Historia</h1>
         <p>Conoce a las personas detras de Natura Bungalows</p>
       </div>

@@ -4,6 +4,10 @@ export default function Contacto() {
   return (
     <>
       <div className="page-hero">
+        <div className="page-hero-bg">
+          <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior9.webp" alt="Natura Bungalows" />
+        </div>
+        <div className="page-hero-overlay" />
         <h1>Contacto</h1>
         <p>Estamos aqui para ayudarte a planificar tu estadia</p>
       </div>

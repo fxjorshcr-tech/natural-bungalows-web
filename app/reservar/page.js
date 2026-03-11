@@ -47,6 +47,10 @@ export default function Reservar() {
   return (
     <>
       <div className="page-hero">
+        <div className="page-hero-bg">
+          <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior2.webp" alt="Natura Bungalows" />
+        </div>
+        <div className="page-hero-overlay" />
         <h1>Reservar</h1>
         <p>Selecciona tu bungalow y fechas de estadia</p>
       </div>
