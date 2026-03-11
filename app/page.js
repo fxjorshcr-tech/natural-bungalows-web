@@ -105,29 +105,90 @@ export default function HomePage() {
       </section>
 
       {/* ABOUT PREVIEW */}
-      <section className="section">
+      <section className="section about-section-enhanced">
         <div className="section-inner">
-          <div className="about-preview">
-            <div className="about-preview-img">
-              <img
-                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp"
-                alt="Natura Bungalows exterior"
-              />
-            </div>
-            <div className="about-preview-text">
-              <h2>Un refugio entre la naturaleza</h2>
-              <p>
-                Natura Bungalows es un proyecto familiar creado con amor por Jose y Yancy, dos costarricenses apasionados por ofrecer un servicio de calidad. Nuestro objetivo es que cada huesped viva una experiencia unica en La Fortuna, rodeado de la belleza natural del Volcan Arenal. Desde el primer momento nos dedicamos a cuidar cada detalle para que te sientas como en casa, mientras disfrutas de una estadia inolvidable en el corazon de Costa Rica.
-              </p>
-              <div className="about-buttons">
-                <Link href="/nosotros" className="btn-secondary">
-                  Conoce nuestra historia
-                </Link>
-                <Link href="/reservar" className="btn-primary" style={{ border: 'none' }}>
-                  Reservar ahora
-                </Link>
+          <div className="section-header">
+            <h2>Un refugio entre la naturaleza</h2>
+            <p>Donde la hospitalidad costarricense se encuentra con el lujo natural</p>
+          </div>
+
+          <div className="about-enhanced-grid">
+            <div className="about-enhanced-main">
+              <div className="about-enhanced-img-main">
+                <img
+                  src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp"
+                  alt="Natura Bungalows exterior"
+                />
+              </div>
+              <div className="about-enhanced-content">
+                <h3>Jose & Yancy</h3>
+                <p className="about-enhanced-subtitle">Fundadores de Natura Bungalows</p>
+                <p>
+                  Somos Jose y Yancy, una familia costarricense dedicada al turismo con una pasion
+                  genuina por la hospitalidad. Creamos Natura Bungalows con un sueno claro: ofrecer
+                  a cada visitante una experiencia autentica, rodeada de la naturaleza exuberante
+                  de La Fortuna y con vistas privilegiadas al majestuoso Volcan Arenal.
+                </p>
+                <p>
+                  Cada detalle ha sido pensado con amor: desde los jardines tropicales que rodean
+                  los bungalows, hasta la cocina completamente equipada y la terraza privada donde
+                  podras contemplar el volcan con un cafe en la mano. Personalmente damos la bienvenida
+                  a cada huesped y nos aseguramos de que tu estadia sea perfecta.
+                </p>
               </div>
             </div>
+
+            <div className="about-enhanced-features">
+              <div className="about-feature-card">
+                <span className="about-feature-icon">🏡</span>
+                <div>
+                  <h4>Solo 3 bungalows</h4>
+                  <p>Privacidad total y atencion personalizada para cada huesped</p>
+                </div>
+              </div>
+              <div className="about-feature-card">
+                <span className="about-feature-icon">⭐</span>
+                <div>
+                  <h4>9.7 en Booking.com</h4>
+                  <p>169 resenas excepcionales de huespedes de todo el mundo</p>
+                </div>
+              </div>
+              <div className="about-feature-card">
+                <span className="about-feature-icon">🌋</span>
+                <div>
+                  <h4>Vistas al Volcan Arenal</h4>
+                  <p>Contempla el volcan desde tu terraza privada cada manana</p>
+                </div>
+              </div>
+              <div className="about-feature-card">
+                <span className="about-feature-icon">🇨🇷</span>
+                <div>
+                  <h4>Anfitriones locales</h4>
+                  <p>Te ayudamos a coordinar tours, restaurantes y experiencias unicas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="about-enhanced-imgs-row">
+            <div className="about-enhanced-img-small">
+              <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp" alt="Interior del bungalow" />
+            </div>
+            <div className="about-enhanced-img-small">
+              <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp" alt="Terraza con vistas" />
+            </div>
+            <div className="about-enhanced-img-small">
+              <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior4.webp" alt="Habitacion" />
+            </div>
+          </div>
+
+          <div className="about-enhanced-cta">
+            <Link href="/nosotros" className="btn-secondary">
+              Conoce nuestra historia completa
+            </Link>
+            <Link href="/reservar" className="btn-primary" style={{ border: 'none' }}>
+              Reservar ahora
+            </Link>
           </div>
         </div>
       </section>
