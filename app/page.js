@@ -112,7 +112,11 @@ export default function HomePage() {
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1>Natura Bungalows</h1>
+          <img
+            src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png"
+            alt="Natura Bungalows"
+            className="hero-logo"
+          />
           <p>LA FORTUNA, COSTA RICA</p>
           <div className="hero-rating">
             ★★★★★ 9.7 Excepcional - 169 reseñas

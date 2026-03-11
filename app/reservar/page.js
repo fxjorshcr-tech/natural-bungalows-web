@@ -72,16 +72,7 @@ export default function Reservar() {
       <section className="section">
         <div className="section-inner">
           <div className="reservation-wrapper">
-            <h2
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1.5rem',
-                color: 'var(--color-primary)',
-                marginBottom: '1.5rem',
-              }}
-            >
-              Elige tu bungalow
-            </h2>
+            <h2>Elige tu bungalow</h2>
 
             <div
               className={`bungalow-option${selectedBungalow === 'deluxe' ? ' selected' : ''}`}
@@ -93,13 +84,12 @@ export default function Reservar() {
                   alt="Bungalow Deluxe"
                 />
               </div>
-              <div className={`bungalow-radio${selectedBungalow === 'deluxe' ? ' checked' : ''}`}></div>
               <div className="bungalow-info">
-                <h3>Bungalow Deluxe</h3>
-                <p>
-                  36 m&sup2; &middot; 1 cama doble extragrande &middot; Cocina
-                  privada &middot; Terraza con vistas
-                </p>
+                <div className="bungalow-info-top">
+                  <div className={`bungalow-radio${selectedBungalow === 'deluxe' ? ' checked' : ''}`}></div>
+                  <h3>Bungalow Deluxe</h3>
+                </div>
+                <p>36 m&sup2; &middot; 1 cama doble extragrande &middot; Cocina privada &middot; Terraza con vistas al volcan</p>
               </div>
             </div>
 
@@ -113,14 +103,17 @@ export default function Reservar() {
                   alt="Bungalow Deluxe con Vistas al Jardin"
                 />
               </div>
-              <div className={`bungalow-radio${selectedBungalow === 'deluxe-jardin' ? ' checked' : ''}`}></div>
               <div className="bungalow-info">
-                <h3>Bungalow Deluxe con Vistas al Jardin</h3>
-                <p>
-                  36 m&sup2; &middot; 1 cama doble extragrande &middot; Vistas
-                  al jardin y volcan
-                </p>
+                <div className="bungalow-info-top">
+                  <div className={`bungalow-radio${selectedBungalow === 'deluxe-jardin' ? ' checked' : ''}`}></div>
+                  <h3>Bungalow Deluxe con Vistas al Jardin</h3>
+                </div>
+                <p>36 m&sup2; &middot; 1 cama doble extragrande &middot; Vistas al jardin tropical y volcan Arenal</p>
               </div>
+            </div>
+
+            <div className="reservation-form-section">
+              <h3>Datos de tu reserva</h3>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>

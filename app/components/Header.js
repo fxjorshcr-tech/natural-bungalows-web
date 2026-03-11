@@ -2,10 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+const LOGO_URL = 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -17,15 +22,13 @@ export default function Header() {
 
   return (
     <>
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <div className="header-inner">
-          <Link href="/" className="logo">
-            <img
-              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png"
-              alt="Natura Bungalows"
-              className="logo-img"
-            />
-          </Link>
+      <header className={`header ${scrolled ? 'scrolled' : ''} ${isHome ? 'header-home' : ''}`}>
+        <div className={`header-inner ${isHome ? 'header-inner-home' : ''}`}>
+          {!isHome && (
+            <Link href="/" className="logo">
+              <img src={LOGO_URL} alt="Natura Bungalows" className="logo-img" />
+            </Link>
+          )}
           <nav className="nav">
             <Link href="/">Inicio</Link>
             <Link href="/nosotros">Nosotros</Link>
