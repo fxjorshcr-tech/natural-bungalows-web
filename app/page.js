@@ -135,65 +135,8 @@ export default function HomePage() {
             <p>Donde la hospitalidad costarricense se encuentra con el lujo natural</p>
           </div>
 
-          <div className="about-enhanced-grid">
-            <div className="about-enhanced-main">
-              <div className="about-enhanced-img-main">
-                <img
-                  src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp"
-                  alt="Natura Bungalows exterior"
-                />
-              </div>
-              <div className="about-enhanced-content">
-                <h3>Jose & Yancy</h3>
-                <p className="about-enhanced-subtitle">Fundadores de Natura Bungalows</p>
-                <p>
-                  Somos Jose y Yancy, una familia costarricense dedicada al turismo con una pasion
-                  genuina por la hospitalidad. Creamos Natura Bungalows con un sueno claro: ofrecer
-                  a cada visitante una experiencia autentica, rodeada de la naturaleza exuberante
-                  de La Fortuna y con vistas privilegiadas al majestuoso Volcan Arenal.
-                </p>
-                <p>
-                  Cada detalle ha sido pensado con amor: desde los jardines tropicales que rodean
-                  los bungalows, hasta la cocina completamente equipada y la terraza privada donde
-                  podras contemplar el volcan con un cafe en la mano. Personalmente damos la bienvenida
-                  a cada huesped y nos aseguramos de que tu estadia sea perfecta.
-                </p>
-              </div>
-            </div>
-
-            <div className="about-enhanced-features">
-              <div className="about-feature-card">
-                <span className="about-feature-icon">🏡</span>
-                <div>
-                  <h4>Solo 3 bungalows</h4>
-                  <p>Privacidad total y atencion personalizada para cada huesped</p>
-                </div>
-              </div>
-              <div className="about-feature-card">
-                <span className="about-feature-icon">⭐</span>
-                <div>
-                  <h4>9.7 en Booking.com</h4>
-                  <p>169 resenas excepcionales de huespedes de todo el mundo</p>
-                </div>
-              </div>
-              <div className="about-feature-card">
-                <span className="about-feature-icon">🌋</span>
-                <div>
-                  <h4>Vistas al Volcan Arenal</h4>
-                  <p>Contempla el volcan desde tu terraza privada cada manana</p>
-                </div>
-              </div>
-              <div className="about-feature-card">
-                <span className="about-feature-icon">🇨🇷</span>
-                <div>
-                  <h4>Anfitriones locales</h4>
-                  <p>Te ayudamos a coordinar tours, restaurantes y experiencias unicas</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="about-carousel">
+          {/* Full-width photo carousel */}
+          <div className="about-carousel about-carousel-hero">
             <div className="about-carousel-track" style={{ transform: `translateX(-${aboutSlide * 100}%)` }}>
               {aboutCarouselImgs.map((src, i) => (
                 <div key={i} className="about-carousel-slide">
@@ -208,6 +151,56 @@ export default function HomePage() {
                 <button key={i} className={`reservar-dot${i === aboutSlide ? ' active' : ''}`} onClick={() => setAboutSlide(i)} />
               ))}
             </div>
+          </div>
+
+          {/* Features grid */}
+          <div className="about-features-row">
+            <div className="about-feature-card">
+              <span className="about-feature-icon">🏡</span>
+              <div>
+                <h4>Solo 3 bungalows</h4>
+                <p>Privacidad total y atencion personalizada para cada huesped</p>
+              </div>
+            </div>
+            <div className="about-feature-card">
+              <span className="about-feature-icon">⭐</span>
+              <div>
+                <h4>9.7 en Booking.com</h4>
+                <p>169 resenas excepcionales de huespedes de todo el mundo</p>
+              </div>
+            </div>
+            <div className="about-feature-card">
+              <span className="about-feature-icon">🌋</span>
+              <div>
+                <h4>Vistas al Volcan Arenal</h4>
+                <p>Contempla el volcan desde tu terraza privada cada manana</p>
+              </div>
+            </div>
+            <div className="about-feature-card">
+              <span className="about-feature-icon">🇨🇷</span>
+              <div>
+                <h4>Anfitriones locales</h4>
+                <p>Te ayudamos a coordinar tours, restaurantes y experiencias unicas</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Text content */}
+          <div className="about-text-block">
+            <h3>Jose & Yancy</h3>
+            <p className="about-enhanced-subtitle">Fundadores de Natura Bungalows</p>
+            <p>
+              Somos Jose y Yancy, una familia costarricense dedicada al turismo con una pasion
+              genuina por la hospitalidad. Creamos Natura Bungalows con un sueno claro: ofrecer
+              a cada visitante una experiencia autentica, rodeada de la naturaleza exuberante
+              de La Fortuna y con vistas privilegiadas al majestuoso Volcan Arenal.
+            </p>
+            <p>
+              Cada detalle ha sido pensado con amor: desde los jardines tropicales que rodean
+              los bungalows, hasta la cocina completamente equipada y la terraza privada donde
+              podras contemplar el volcan con un cafe en la mano. Personalmente damos la bienvenida
+              a cada huesped y nos aseguramos de que tu estadia sea perfecta.
+            </p>
           </div>
 
           <div className="about-enhanced-cta">

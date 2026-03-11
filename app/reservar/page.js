@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import DatePicker from '../components/DatePicker';
 
 const carouselImages = [
   { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp', caption: 'Bungalows rodeados de naturaleza' },
@@ -118,22 +119,17 @@ export default function Reservar() {
 
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
-                <div className="form-group">
-                  <label>Fecha de entrada</label>
-                  <input
-                    type="date"
-                    value={checkIn}
-                    onChange={(e) => setCheckIn(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Fecha de salida</label>
-                  <input
-                    type="date"
-                    value={checkOut}
-                    onChange={(e) => setCheckOut(e.target.value)}
-                  />
-                </div>
+                <DatePicker
+                  label="Fecha de entrada"
+                  value={checkIn}
+                  onChange={(val) => setCheckIn(val)}
+                />
+                <DatePicker
+                  label="Fecha de salida"
+                  value={checkOut}
+                  onChange={(val) => setCheckOut(val)}
+                  minDate={checkIn}
+                />
               </div>
 
               <div className="form-row">
