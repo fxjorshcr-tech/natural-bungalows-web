@@ -36,7 +36,7 @@ export default function Header() {
             <Link href="/reservar" className="btn-reservar">Reservar</Link>
           </nav>
           <button
-            className="mobile-toggle"
+            className={`mobile-toggle ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
