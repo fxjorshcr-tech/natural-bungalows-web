@@ -2,16 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import DatePicker from '../components/DatePicker';
+import { useLanguage } from '../i18n/LanguageContext';
 
-const carouselImages = [
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp', caption: 'Bungalows rodeados de naturaleza' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp', caption: 'Interior completamente equipado' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp', caption: 'Jardines tropicales' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior4.webp', caption: 'Habitacion con cama extragrande' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp', caption: 'Terraza con vistas al volcan' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior5.webp', caption: 'Cocina totalmente equipada' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior7.webp', caption: 'Vista exterior del bungalow' },
-  { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior6.webp', caption: 'Bano privado completo' },
+const carouselImageSrcs = [
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior4.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior5.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior7.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior6.webp',
 ];
 
 export default function Reservar() {
@@ -25,13 +26,16 @@ export default function Reservar() {
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { lang, t } = useLanguage();
+  const r = t.reservarPage[lang];
+  const captions = t.carouselCaptions[lang];
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    setCurrentSlide((prev) => (prev + 1) % carouselImageSrcs.length);
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+    setCurrentSlide((prev) => (prev - 1 + carouselImageSrcs.length) % carouselImageSrcs.length);
   }, []);
 
   useEffect(() => {
@@ -41,7 +45,6 @@ export default function Reservar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: connect to email service later
     setSent(true);
   };
 
@@ -49,13 +52,13 @@ export default function Reservar() {
     <>
       <div className="reservar-carousel" style={{ marginTop: 0 }}>
         <div className="reservar-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-          {carouselImages.map((img, i) => (
+          {carouselImageSrcs.map((src, i) => (
             <div key={i} className="reservar-carousel-slide">
-              <img src={img.src} alt={img.caption} />
+              <img src={src} alt={captions[i]} />
               <div className="reservar-carousel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 30%, transparent 60%)' }}>
                 <div style={{ width: '100%' }}>
-                  <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', color: 'white', marginBottom: '0.3rem', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>Reservar</h1>
-                  <p style={{ fontSize: '1.2rem' }}>{img.caption}</p>
+                  <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', color: 'white', marginBottom: '0.3rem', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>{r.title}</h1>
+                  <p style={{ fontSize: '1.2rem' }}>{captions[i]}</p>
                 </div>
               </div>
             </div>
@@ -64,7 +67,7 @@ export default function Reservar() {
         <button className="reservar-nav prev" onClick={prevSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8249;</button>
         <button className="reservar-nav next" onClick={nextSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8250;</button>
         <div className="reservar-dots">
-          {carouselImages.map((_, i) => (
+          {carouselImageSrcs.map((_, i) => (
             <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
           ))}
         </div>
@@ -73,7 +76,7 @@ export default function Reservar() {
       <section className="section">
         <div className="section-inner">
           <div className="reservation-wrapper">
-            <h2>Elige tu bungalow</h2>
+            <h2>{r.chooseBungalow}</h2>
 
             <div
               className={`bungalow-option${selectedBungalow === 'deluxe' ? ' selected' : ''}`}
@@ -82,15 +85,15 @@ export default function Reservar() {
               <div className="bungalow-thumb">
                 <img
                   src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp"
-                  alt="Bungalow Deluxe"
+                  alt={r.bungalow1}
                 />
               </div>
               <div className="bungalow-info">
                 <div className="bungalow-info-top">
                   <div className={`bungalow-radio${selectedBungalow === 'deluxe' ? ' checked' : ''}`}></div>
-                  <h3>Bungalow Deluxe</h3>
+                  <h3>{r.bungalow1}</h3>
                 </div>
-                <p>36 m&sup2; &middot; 1 cama doble extragrande &middot; Cocina privada &middot; Terraza con vistas al volcan</p>
+                <p>{r.bungalow1Desc}</p>
               </div>
             </div>
 
@@ -101,31 +104,31 @@ export default function Reservar() {
               <div className="bungalow-thumb">
                 <img
                   src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior2.webp"
-                  alt="Bungalow Deluxe con Vistas al Jardin"
+                  alt={r.bungalow2}
                 />
               </div>
               <div className="bungalow-info">
                 <div className="bungalow-info-top">
                   <div className={`bungalow-radio${selectedBungalow === 'deluxe-jardin' ? ' checked' : ''}`}></div>
-                  <h3>Bungalow Deluxe con Vistas al Jardin</h3>
+                  <h3>{r.bungalow2}</h3>
                 </div>
-                <p>36 m&sup2; &middot; 1 cama doble extragrande &middot; Vistas al jardin tropical y volcan Arenal</p>
+                <p>{r.bungalow2Desc}</p>
               </div>
             </div>
 
             <div className="reservation-form-section">
-              <h3>Datos de tu reserva</h3>
+              <h3>{r.formTitle}</h3>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <DatePicker
-                  label="Fecha de entrada"
+                  label={r.checkIn}
                   value={checkIn}
                   onChange={(val) => setCheckIn(val)}
                 />
                 <DatePicker
-                  label="Fecha de salida"
+                  label={r.checkOut}
                   value={checkOut}
                   onChange={(val) => setCheckOut(val)}
                   minDate={checkIn}
@@ -134,18 +137,18 @@ export default function Reservar() {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Numero de huespedes</label>
+                  <label>{r.guests}</label>
                   <select
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
                   >
-                    <option value="">Seleccionar</option>
+                    <option value="">{r.guestsSelect}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Nombre completo</label>
+                  <label>{r.fullName}</label>
                   <input
                     type="text"
                     value={name}
@@ -156,7 +159,7 @@ export default function Reservar() {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Email</label>
+                  <label>{r.email}</label>
                   <input
                     type="email"
                     value={email}
@@ -164,7 +167,7 @@ export default function Reservar() {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Telefono</label>
+                  <label>{r.phone}</label>
                   <input
                     type="tel"
                     value={phone}
@@ -174,7 +177,7 @@ export default function Reservar() {
               </div>
 
               <div className="form-group">
-                <label>Mensaje o solicitudes especiales</label>
+                <label>{r.message}</label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -182,17 +185,14 @@ export default function Reservar() {
               </div>
 
               <button type="submit" className="btn-primary">
-                Confirmar reserva
+                {r.submit}
               </button>
             </form>
 
             {sent && (
               <div className="form-success">
-                <h3>Solicitud enviada</h3>
-                <p>
-                  Hemos recibido tu solicitud de reserva. Te contactaremos
-                  pronto para confirmar disponibilidad y detalles.
-                </p>
+                <h3>{r.sentTitle}</h3>
+                <p>{r.sentMsg}</p>
               </div>
             )}
           </div>

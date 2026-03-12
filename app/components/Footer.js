@@ -1,6 +1,13 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Footer() {
+  const { lang, t } = useLanguage()
+  const f = t.footer[lang]
+  const nav = t.nav[lang]
+
   return (
     <footer className="footer">
       <div className="footer-inner">
@@ -10,32 +17,29 @@ export default function Footer() {
               alt="Natura Bungalows"
               style={{ height: '60px', width: 'auto', marginBottom: '0.75rem', filter: 'brightness(0) invert(1)' }}
             />
-          <p>
-            Bungalows de lujo rodeados de naturaleza con vistas al Volcan Arenal.
-            La Fortuna, San Carlos, Costa Rica.
-          </p>
+          <p>{f.desc}</p>
         </div>
         <div>
-          <h4>Navegacion</h4>
+          <h4>{f.nav}</h4>
           <ul className="footer-links">
-            <li><Link href="/">Inicio</Link></li>
-            <li><Link href="/nosotros">Nosotros</Link></li>
-            <li><Link href="/contacto">Contacto</Link></li>
-            <li><Link href="/reservar">Reservar</Link></li>
+            <li><Link href="/">{nav.inicio}</Link></li>
+            <li><Link href="/nosotros">{nav.nosotros}</Link></li>
+            <li><Link href="/contacto">{nav.contacto}</Link></li>
+            <li><Link href="/reservar">{nav.reservar}</Link></li>
           </ul>
         </div>
         <div>
-          <h4>Contacto</h4>
+          <h4>{f.contact}</h4>
           <ul className="footer-links">
             <li>La Fortuna, San Carlos</li>
             <li>Costa Rica</li>
-            <li>Check-in: 14:00 - 18:00</li>
-            <li>Check-out: 24 horas</li>
+            <li>{f.checkin}</li>
+            <li>{f.checkout}</li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        &copy; {new Date().getFullYear()} Natura Bungalows. Todos los derechos reservados.
+        &copy; {new Date().getFullYear()} Natura Bungalows. {f.rights}
       </div>
     </footer>
   )

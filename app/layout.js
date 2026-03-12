@@ -1,6 +1,7 @@
 import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Providers from './components/Providers'
 
 export const metadata = {
   title: 'Natura Bungalows | La Fortuna, Costa Rica',
@@ -11,9 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

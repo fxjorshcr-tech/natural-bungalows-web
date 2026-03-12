@@ -1,13 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-
-const MONTHS = [
-  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-];
-
-const WEEKDAYS = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function DatePicker({ value, onChange, label, minDate }) {
   const [open, setOpen] = useState(false);
@@ -20,6 +14,8 @@ export default function DatePicker({ value, onChange, label, minDate }) {
     return { year: now.getFullYear(), month: now.getMonth() };
   });
   const ref = useRef(null);
+  const { lang, t } = useLanguage();
+  const dp = t.datePicker[lang];
 
   useEffect(() => {
     const handler = (e) => {
@@ -65,6 +61,7 @@ export default function DatePicker({ value, onChange, label, minDate }) {
   const formatDisplay = (val) => {
     if (!val) return '';
     const [y, m, d] = val.split('-');
+    if (lang === 'en') return `${m}/${d}/${y}`;
     return `${d}/${m}/${y}`;
   };
 
@@ -94,18 +91,18 @@ export default function DatePicker({ value, onChange, label, minDate }) {
           value={formatDisplay(value)}
           onClick={() => setOpen(!open)}
           readOnly
-          placeholder="dd/mm/aaaa"
+          placeholder={dp.placeholder}
           style={{ cursor: 'pointer' }}
         />
         {open && (
           <div className="date-picker-dropdown">
             <div className="date-picker-header">
               <button type="button" onClick={prevMonth}>&#8249;</button>
-              <span>{MONTHS[viewDate.month]} {viewDate.year}</span>
+              <span>{dp.months[viewDate.month]} {viewDate.year}</span>
               <button type="button" onClick={nextMonth}>&#8250;</button>
             </div>
             <div className="date-picker-weekdays">
-              {WEEKDAYS.map((d) => <span key={d}>{d}</span>)}
+              {dp.weekdays.map((d) => <span key={d}>{d}</span>)}
             </div>
             <div className="date-picker-days">
               {Array.from({ length: startOffset }).map((_, i) => (
