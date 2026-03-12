@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const languages = [
-  { code: 'es', flag: '🇪🇸', label: 'Español' },
-  { code: 'en', flag: '🇬🇧', label: 'English' },
-  { code: 'fr', flag: '🇫🇷', label: 'Français' },
-  { code: 'de', flag: '🇩🇪', label: 'Deutsch' },
+  { code: 'es', label: 'Español', flag: 'https://flagcdn.com/w40/es.png', flag2x: 'https://flagcdn.com/w80/es.png' },
+  { code: 'en', label: 'English', flag: 'https://flagcdn.com/w40/gb.png', flag2x: 'https://flagcdn.com/w80/gb.png' },
+  { code: 'fr', label: 'Français', flag: 'https://flagcdn.com/w40/fr.png', flag2x: 'https://flagcdn.com/w80/fr.png' },
+  { code: 'de', label: 'Deutsch', flag: 'https://flagcdn.com/w40/de.png', flag2x: 'https://flagcdn.com/w80/de.png' },
 ];
 
 export default function LanguageSwitcher({ mobile = false }) {
@@ -35,7 +35,7 @@ export default function LanguageSwitcher({ mobile = false }) {
             className={`lang-mobile-btn${lang === l.code ? ' active' : ''}`}
             onClick={() => setLang(l.code)}
           >
-            <span className="lang-flag-lg">{l.flag}</span>
+            <img src={l.flag} srcSet={`${l.flag2x} 2x`} alt={l.label} className="lang-flag-img" />
             <span>{l.label}</span>
           </button>
         ))}
@@ -46,7 +46,7 @@ export default function LanguageSwitcher({ mobile = false }) {
   return (
     <div className="lang-dropdown" ref={ref}>
       <button className="lang-dropdown-toggle" onClick={() => setOpen(!open)}>
-        <span className="lang-flag-lg">{current.flag}</span>
+        <img src={current.flag} srcSet={`${current.flag2x} 2x`} alt={current.label} className="lang-flag-img" />
         <span className="lang-dropdown-arrow">{open ? '▲' : '▼'}</span>
       </button>
       {open && (
@@ -57,7 +57,7 @@ export default function LanguageSwitcher({ mobile = false }) {
               className={`lang-dropdown-item${lang === l.code ? ' active' : ''}`}
               onClick={() => { setLang(l.code); setOpen(false); }}
             >
-              <span className="lang-flag-lg">{l.flag}</span>
+              <img src={l.flag} srcSet={`${l.flag2x} 2x`} alt={l.label} className="lang-flag-img" />
               <span>{l.label}</span>
             </button>
           ))}

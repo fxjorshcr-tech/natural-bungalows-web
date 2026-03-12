@@ -222,9 +222,12 @@ a {
   background: rgba(44, 85, 48, 0.15);
 }
 
-.lang-flag-lg {
-  font-size: 1.5rem;
-  line-height: 1;
+.lang-flag-img {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
 }
 
 .lang-dropdown-arrow {
@@ -319,8 +322,9 @@ a {
   color: var(--color-primary);
 }
 
-.lang-mobile-btn .lang-flag-lg {
-  font-size: 1.3rem;
+.lang-mobile-btn .lang-flag-img {
+  width: 28px;
+  height: 19px;
 }
 
 .mobile-toggle {
