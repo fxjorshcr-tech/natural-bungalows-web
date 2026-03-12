@@ -53,7 +53,7 @@ export default function Header() {
       </header>
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
         <div className="mobile-lang-row">
-          <LanguageSwitcher />
+          <LanguageSwitcher mobile />
         </div>
         <Link href="/" onClick={closeMenu}>{nav.inicio}</Link>
         <Link href="/nosotros" onClick={closeMenu}>{nav.nosotros}</Link>
