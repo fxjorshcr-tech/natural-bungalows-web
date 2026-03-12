@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import ContactForm from './components/ContactForm';
+import { useLanguage } from './i18n/LanguageContext';
 
 const galleryImages = [
   { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp', alt: 'Interior del bungalow' },
@@ -15,28 +16,8 @@ const galleryImages = [
   { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior9.webp', alt: 'Vista panoramica' },
 ];
 
-const amenities = [
-  { icon: '📶', name: 'WiFi gratis' },
-  { icon: '🅿️', name: 'Parking privado' },
-  { icon: '❄️', name: 'Aire acondicionado' },
-  { icon: '🍳', name: 'Cocina equipada' },
-  { icon: '🌋', name: 'Vistas al volcan' },
-  { icon: '📺', name: 'Netflix / Streaming' },
-  { icon: '☀️', name: 'Terraza privada' },
-  { icon: '🛁', name: 'Bano privado' },
-];
-
-const activities = [
-  { icon: '🌊', title: 'Catarata La Fortuna', desc: 'A 5 km del bungalow' },
-  { icon: '🌋', title: 'Volcan Arenal', desc: 'Parque Nacional Volcan Arenal' },
-  { icon: '♨️', title: 'Aguas termales', desc: 'Kalambu, Ecotermales y mas' },
-  { icon: '🌿', title: 'Puentes colgantes', desc: 'Mistico Arenal Hanging Bridges' },
-  { icon: '🚡', title: 'Canopy y aventura', desc: 'Ecoglide Arenal Park' },
-  { icon: '🚣', title: 'Rafting y kayak', desc: 'Rio Balsa y Lago Arenal' },
-  { icon: '🦜', title: 'Caminatas nocturnas', desc: 'Descubre la fauna tropical' },
-  { icon: '🐴', title: 'Cabalgatas', desc: 'Rutas con vistas al volcan' },
-  { icon: '🎯', title: 'Bungee jumping', desc: 'Arenal Bungee' },
-];
+const activityIcons = ['🌊', '🌋', '♨️', '🌿', '🚡', '🚣', '🦜', '🐴', '🎯'];
+const amenityIcons = ['📶', '🅿️', '❄️', '🍳', '🌋', '📺', '☀️', '🛁'];
 
 const reviews = [
   { name: 'Alex', country: 'España', text: 'Bungalows fantasticos y muy bien equipados. Mini cocina completa, parking privado y los anfitriones son increibles. Si vuelvo a La Fortuna, repito sin dudarlo.' },
@@ -66,6 +47,16 @@ export default function HomePage() {
   const [currentReview, setCurrentReview] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
   const [aboutSlide, setAboutSlide] = useState(0);
+  const { lang, t } = useLanguage();
+
+  const heroT = t.hero[lang];
+  const aboutT = t.about[lang];
+  const galleryT = t.gallery[lang];
+  const amenitiesT = t.amenities[lang];
+  const fortunaT = t.fortuna[lang];
+  const activitiesT = t.activities[lang];
+  const reviewsT = t.reviews[lang];
+  const contactT = t.contact[lang];
 
   useEffect(() => {
     const handleResize = () => {
@@ -117,12 +108,12 @@ export default function HomePage() {
             alt="Natura Bungalows"
             className="hero-logo"
           />
-          <p>LA FORTUNA, COSTA RICA</p>
+          <p>{heroT.subtitle}</p>
           <div className="hero-rating">
-            ★★★★★ 9.7 Excepcional - 169 reseñas
+            ★★★★★ {heroT.rating}
           </div>
           <Link href="/reservar" className="btn-primary">
-            Reservar ahora
+            {heroT.cta}
           </Link>
         </div>
       </section>
@@ -131,11 +122,10 @@ export default function HomePage() {
       <section className="section about-section-enhanced">
         <div className="section-inner">
           <div className="section-header">
-            <h2>Un refugio entre la naturaleza</h2>
-            <p>Donde la hospitalidad costarricense se encuentra con el lujo natural</p>
+            <h2>{aboutT.title}</h2>
+            <p>{aboutT.subtitle}</p>
           </div>
 
-          {/* Full-width photo carousel */}
           <div className="about-carousel about-carousel-hero">
             <div className="about-carousel-track" style={{ transform: `translateX(-${aboutSlide * 100}%)` }}>
               {aboutCarouselImgs.map((src, i) => (
@@ -153,62 +143,50 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Features grid */}
           <div className="about-features-row">
             <div className="about-feature-card">
               <span className="about-feature-icon">🏡</span>
               <div>
-                <h4>Solo 3 bungalows</h4>
-                <p>Privacidad total y atencion personalizada para cada huesped</p>
+                <h4>{aboutT.feat1Title}</h4>
+                <p>{aboutT.feat1Desc}</p>
               </div>
             </div>
             <div className="about-feature-card">
               <span className="about-feature-icon">⭐</span>
               <div>
-                <h4>9.7 en Booking.com</h4>
-                <p>169 resenas excepcionales de huespedes de todo el mundo</p>
+                <h4>{aboutT.feat2Title}</h4>
+                <p>{aboutT.feat2Desc}</p>
               </div>
             </div>
             <div className="about-feature-card">
               <span className="about-feature-icon">🌋</span>
               <div>
-                <h4>Vistas al Volcan Arenal</h4>
-                <p>Contempla el volcan desde tu terraza privada cada manana</p>
+                <h4>{aboutT.feat3Title}</h4>
+                <p>{aboutT.feat3Desc}</p>
               </div>
             </div>
             <div className="about-feature-card">
               <span className="about-feature-icon">🇨🇷</span>
               <div>
-                <h4>Anfitriones locales</h4>
-                <p>Te ayudamos a coordinar tours, restaurantes y experiencias unicas</p>
+                <h4>{aboutT.feat4Title}</h4>
+                <p>{aboutT.feat4Desc}</p>
               </div>
             </div>
           </div>
 
-          {/* Text content */}
           <div className="about-text-block">
-            <h3>Jose & Yancy</h3>
-            <p className="about-enhanced-subtitle">Fundadores de Natura Bungalows</p>
-            <p>
-              Somos Jose y Yancy, una familia costarricense dedicada al turismo con una pasion
-              genuina por la hospitalidad. Creamos Natura Bungalows con un sueno claro: ofrecer
-              a cada visitante una experiencia autentica, rodeada de la naturaleza exuberante
-              de La Fortuna y con vistas privilegiadas al majestuoso Volcan Arenal.
-            </p>
-            <p>
-              Cada detalle ha sido pensado con amor: desde los jardines tropicales que rodean
-              los bungalows, hasta la cocina completamente equipada y la terraza privada donde
-              podras contemplar el volcan con un cafe en la mano. Personalmente damos la bienvenida
-              a cada huesped y nos aseguramos de que tu estadia sea perfecta.
-            </p>
+            <h3>{aboutT.foundersName}</h3>
+            <p className="about-enhanced-subtitle">{aboutT.foundersRole}</p>
+            <p>{aboutT.foundersP1}</p>
+            <p>{aboutT.foundersP2}</p>
           </div>
 
           <div className="about-enhanced-cta">
             <Link href="/nosotros" className="btn-secondary">
-              Conoce nuestra historia completa
+              {aboutT.ctaHistory}
             </Link>
             <Link href="/reservar" className="btn-primary" style={{ border: 'none' }}>
-              Reservar ahora
+              {aboutT.ctaBook}
             </Link>
           </div>
         </div>
@@ -217,8 +195,8 @@ export default function HomePage() {
       {/* GALLERY */}
       <section className="section section-alt">
         <div className="section-header">
-          <h2>Nuestros Bungalows</h2>
-          <p>Espacios diseñados para tu descanso</p>
+          <h2>{galleryT.title}</h2>
+          <p>{galleryT.subtitle}</p>
         </div>
         <div className="gallery-grid">
           {galleryImages.map((image, index) => (
@@ -253,7 +231,7 @@ export default function HomePage() {
 
         <div className="gallery-cta">
           <Link href="/reservar" className="btn-primary">
-            Reservar tu estadia
+            {galleryT.cta}
           </Link>
         </div>
       </section>
@@ -261,14 +239,14 @@ export default function HomePage() {
       {/* AMENITIES */}
       <section className="section">
         <div className="section-header">
-          <h2>Comodidades</h2>
-          <p>Todo lo que necesitas para una estadia perfecta</p>
+          <h2>{amenitiesT.title}</h2>
+          <p>{amenitiesT.subtitle}</p>
         </div>
         <div className="amenities-grid">
-          {amenities.map((amenity, index) => (
+          {amenitiesT.items.map((name, index) => (
             <div key={index} className="amenity-card">
-              <span className="amenity-icon">{amenity.icon}</span>
-              <h3>{amenity.name}</h3>
+              <span className="amenity-icon">{amenityIcons[index]}</span>
+              <h3>{name}</h3>
             </div>
           ))}
         </div>
@@ -281,29 +259,17 @@ export default function HomePage() {
             <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-tour-visit.webp" alt="Volcan Arenal, La Fortuna" />
           </div>
           <div className="fortuna-text">
-            <h2>Descubre La Fortuna</h2>
-            <p className="subtitle">El destino mas visitado de Costa Rica</p>
-            <p>La Fortuna de San Carlos es un paraiso tropical al pie del majestuoso Volcan Arenal, uno de los volcanes mas activos y emblematicos de Costa Rica. Esta pequena ciudad se ha convertido en el epicentro del turismo de aventura y naturaleza del pais.</p>
-            <p>Rodeada de selva tropical, rios cristalinos y una biodiversidad asombrosa, La Fortuna ofrece una combinacion unica de aventura, relajacion y cultura costarricense. Desde aguas termales naturales calentadas por el volcan hasta cascadas espectaculares, cada rincon esconde una experiencia inolvidable.</p>
+            <h2>{fortunaT.title}</h2>
+            <p className="subtitle">{fortunaT.subtitle}</p>
+            <p>{fortunaT.p1}</p>
+            <p>{fortunaT.p2}</p>
             <div className="fortuna-highlights">
-              <div className="fortuna-highlight">
-                <span>🌋</span> Volcan Arenal activo
-              </div>
-              <div className="fortuna-highlight">
-                <span>♨️</span> Aguas termales naturales
-              </div>
-              <div className="fortuna-highlight">
-                <span>🌊</span> Cascadas y rios
-              </div>
-              <div className="fortuna-highlight">
-                <span>🌿</span> Selva tropical virgen
-              </div>
-              <div className="fortuna-highlight">
-                <span>🦜</span> Biodiversidad unica
-              </div>
-              <div className="fortuna-highlight">
-                <span>🌄</span> Vistas espectaculares
-              </div>
+              <div className="fortuna-highlight"><span>🌋</span> {fortunaT.h1}</div>
+              <div className="fortuna-highlight"><span>♨️</span> {fortunaT.h2}</div>
+              <div className="fortuna-highlight"><span>🌊</span> {fortunaT.h3}</div>
+              <div className="fortuna-highlight"><span>🌿</span> {fortunaT.h4}</div>
+              <div className="fortuna-highlight"><span>🦜</span> {fortunaT.h5}</div>
+              <div className="fortuna-highlight"><span>🌄</span> {fortunaT.h6}</div>
             </div>
           </div>
         </div>
@@ -312,15 +278,15 @@ export default function HomePage() {
       {/* ACTIVITIES */}
       <section className="section section-dark">
         <div className="section-header">
-          <h2>Actividades en La Fortuna</h2>
+          <h2>{activitiesT.title}</h2>
         </div>
         <p className="activities-intro">
-          La Fortuna es mucho mas que un destino: es una experiencia. Con decenas de actividades para todos los gustos, desde aventuras extremas hasta paseos tranquilos por la naturaleza, aqui siempre hay algo nuevo por descubrir. Nosotros te ayudamos a coordinar cada detalle para que disfrutes al maximo.
+          {activitiesT.intro}
         </p>
         <div className="activities-grid">
-          {activities.map((activity, index) => (
+          {activitiesT.items.map((activity, index) => (
             <div key={index} className="activity-card">
-              <span className="activity-icon">{activity.icon}</span>
+              <span className="activity-icon">{activityIcons[index]}</span>
               <div>
                 <h3>{activity.title}</h3>
                 <p>{activity.desc}</p>
@@ -330,7 +296,7 @@ export default function HomePage() {
         </div>
         <div className="gallery-cta">
           <Link href="/reservar" className="btn-primary" style={{ color: 'white', borderColor: 'white' }}>
-            Planifica tu aventura
+            {activitiesT.cta}
           </Link>
         </div>
       </section>
@@ -338,8 +304,8 @@ export default function HomePage() {
       {/* REVIEWS CAROUSEL */}
       <section className="section section-alt">
         <div className="section-header">
-          <h2>Lo que dicen nuestros huespedes</h2>
-          <p>Puntuacion 9.7/10 en Booking.com</p>
+          <h2>{reviewsT.title}</h2>
+          <p>{reviewsT.subtitle}</p>
         </div>
         <div className="reviews-wrapper">
           <div
@@ -390,31 +356,31 @@ export default function HomePage() {
       {/* CONTACT */}
       <section className="section">
         <div className="section-header">
-          <h2>Contactanos</h2>
-          <p>Estamos aqui para ayudarte</p>
+          <h2>{contactT.title}</h2>
+          <p>{contactT.subtitle}</p>
         </div>
         <div className="contact-section">
           <div className="contact-info">
-            <h3>Informacion de contacto</h3>
+            <h3>{contactT.infoTitle}</h3>
             <div className="contact-info-item">
               <span>📍</span>
               <div>
-                <strong>Ubicacion</strong>
-                <p>La Fortuna, San Carlos, Alajuela, Costa Rica</p>
+                <strong>{contactT.locationLabel}</strong>
+                <p>{contactT.locationValue}</p>
               </div>
             </div>
             <div className="contact-info-item">
               <span>🕐</span>
               <div>
-                <strong>Check-in / Check-out</strong>
-                <p>Entrada: 14:00 - 18:00 | Salida: Disponible 24h</p>
+                <strong>{contactT.checkLabel}</strong>
+                <p>{contactT.checkValue}</p>
               </div>
             </div>
             <div className="contact-info-item">
               <span>💬</span>
               <div>
-                <strong>Idiomas</strong>
-                <p>Español e Ingles</p>
+                <strong>{contactT.langLabel}</strong>
+                <p>{contactT.langValue}</p>
               </div>
             </div>
           </div>

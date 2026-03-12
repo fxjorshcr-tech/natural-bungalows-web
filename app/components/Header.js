@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useLanguage } from '../i18n/LanguageContext'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const LOGO_URL = 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png'
 
@@ -11,6 +13,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHome = pathname === '/'
+  const { lang, t } = useLanguage()
+  const nav = t.nav[lang]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -30,11 +34,12 @@ export default function Header() {
             </Link>
           )}
           <nav className="nav">
-            <Link href="/">Inicio</Link>
-            <Link href="/nosotros">Nosotros</Link>
-            <Link href="/contacto">Contacto</Link>
-            <Link href="/reservar" className="btn-reservar">Reservar</Link>
+            <Link href="/">{nav.inicio}</Link>
+            <Link href="/nosotros">{nav.nosotros}</Link>
+            <Link href="/contacto">{nav.contacto}</Link>
+            <Link href="/reservar" className="btn-reservar">{nav.reservar}</Link>
           </nav>
+          <LanguageSwitcher />
           <button
             className={`mobile-toggle ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -47,10 +52,13 @@ export default function Header() {
         </div>
       </header>
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <Link href="/" onClick={closeMenu}>Inicio</Link>
-        <Link href="/nosotros" onClick={closeMenu}>Nosotros</Link>
-        <Link href="/contacto" onClick={closeMenu}>Contacto</Link>
-        <Link href="/reservar" onClick={closeMenu} className="btn-reservar" style={{ textAlign: 'center' }}>Reservar</Link>
+        <div className="mobile-lang-row">
+          <LanguageSwitcher mobile />
+        </div>
+        <Link href="/" onClick={closeMenu}>{nav.inicio}</Link>
+        <Link href="/nosotros" onClick={closeMenu}>{nav.nosotros}</Link>
+        <Link href="/contacto" onClick={closeMenu}>{nav.contacto}</Link>
+        <Link href="/reservar" onClick={closeMenu} className="btn-reservar" style={{ textAlign: 'center' }}>{nav.reservar}</Link>
       </div>
     </>
   )
