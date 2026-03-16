@@ -1,6 +1,7 @@
 import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import WhatsAppButton from './components/WhatsAppButton'
 import Providers from './components/Providers'
 
 export const metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <Footer />
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>
