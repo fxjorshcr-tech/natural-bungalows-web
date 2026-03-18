@@ -2022,6 +2022,9 @@ a {
   justify-content: center;
   gap: 1.25rem;
   flex-wrap: wrap;
+  margin-top: 2.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
