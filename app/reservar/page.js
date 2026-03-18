@@ -15,76 +15,7 @@ const carouselImageSrcs = [
   'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior6.webp',
 ];
 
-function BungalowCard({ name, bed, image, r, onSelect, selected }) {
-  const [showExtras, setShowExtras] = useState(false);
-
-  return (
-    <div className={`bcard${selected ? ' bcard-selected' : ''}`}>
-      <div className="bcard-main">
-        <div className="bcard-info">
-          <div className="bcard-img">
-            <img src={image} alt={name} />
-          </div>
-          <h3 className="bcard-name">{name}</h3>
-          <p className="bcard-bed">{bed}</p>
-          <div className="bcard-tags">
-            {r.tags.map((tag, i) => (
-              <span key={i} className="bcard-tag">{tag}</span>
-            ))}
-          </div>
-          <button className="bcard-more" type="button" onClick={() => setShowExtras(!showExtras)}>
-            {showExtras ? '▲ Menos' : '▼ Mas'}
-          </button>
-          {showExtras && (
-            <div className="bcard-extras">
-              {r.extras.map((ex, i) => (
-                <div key={i} className="bcard-extra">✓ {ex}</div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="bcard-price">
-          <div className="bcard-price-amount">CRC 54,303</div>
-          <div className="bcard-price-per">{r.pricePerNight}</div>
-          <div className="bcard-price-tax">+ CRC 7,059 {r.taxes}</div>
-        </div>
-
-        <div className="bcard-benefits">
-          <div className="bcard-benefit">
-            <span className="bcard-check">✔</span>
-            <span>{r.benefit1}</span>
-          </div>
-          <div className="bcard-benefit">
-            <span className="bcard-check">✔</span>
-            <span><strong>{r.benefit2}</strong> {r.benefit2sub}</span>
-          </div>
-          <div className="bcard-benefit">
-            <span className="bcard-check">✔</span>
-            <span><strong>{r.benefit3}</strong> - {r.benefit3sub}</span>
-          </div>
-          <div className="bcard-benefit">
-            <span className="bcard-check-alt">✔</span>
-            <span>{r.benefit4}</span>
-          </div>
-        </div>
-
-        <div className="bcard-action">
-          <button
-            className={`bcard-select-btn${selected ? ' selected' : ''}`}
-            type="button"
-            onClick={onSelect}
-          >
-            {selected ? '✓' : r.selectBtn}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Reservar() {
-  const [selectedBungalow, setSelectedBungalow] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('');
@@ -94,6 +25,7 @@ export default function Reservar() {
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showExtras, setShowExtras] = useState(false);
   const { lang, t } = useLanguage();
   const r = t.reservarPage[lang];
   const captions = t.carouselCaptions[lang];
@@ -116,58 +48,127 @@ export default function Reservar() {
     setSent(true);
   };
 
+  const scrollToForm = () => {
+    document.getElementById('reservation-form').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-      <div className="reservar-carousel" style={{ marginTop: 0 }}>
-        <div className="reservar-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-          {carouselImageSrcs.map((src, i) => (
-            <div key={i} className="reservar-carousel-slide">
-              <img src={src} alt={captions[i]} />
-              <div className="reservar-carousel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 30%, transparent 60%)' }}>
-                <div style={{ width: '100%' }}>
-                  <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', color: 'white', marginBottom: '0.3rem', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>{r.title}</h1>
-                  <p style={{ fontSize: '1.2rem' }}>{captions[i]}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* HERO */}
+      <div className="page-hero" style={{ minHeight: '50vh' }}>
+        <div className="page-hero-bg">
+          <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp" alt="Natura Bungalows" />
         </div>
-        <button className="reservar-nav prev" onClick={prevSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8249;</button>
-        <button className="reservar-nav next" onClick={nextSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8250;</button>
-        <div className="reservar-dots">
-          {carouselImageSrcs.map((_, i) => (
-            <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
-          ))}
-        </div>
+        <div className="page-hero-overlay" />
+        <img
+          src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png"
+          alt="Natura Bungalows"
+          style={{ height: '80px', width: 'auto', marginBottom: '1rem', filter: 'brightness(0) invert(1)', position: 'relative', zIndex: 2 }}
+        />
+        <p style={{ position: 'relative', zIndex: 2, color: 'rgba(255,255,255,0.85)', fontSize: '1.1rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>La Fortuna, Costa Rica</p>
+        <h1 style={{ position: 'relative', zIndex: 2 }}>{r.title}</h1>
+        <button
+          type="button"
+          onClick={scrollToForm}
+          style={{ position: 'relative', zIndex: 2, marginTop: '1.5rem', background: 'transparent', border: '2px solid rgba(255,255,255,0.6)', color: 'white', padding: '0.8rem 2rem', borderRadius: '50px', cursor: 'pointer', fontSize: '0.95rem', letterSpacing: '0.05em', transition: 'all 0.3s ease', fontFamily: 'var(--font-body)' }}
+        >
+          {r.submit}
+        </button>
       </div>
 
-      {/* BUNGALOW SELECTION */}
+      {/* BUNGALOW INFO WITH CAROUSEL */}
       <section className="section">
         <div className="section-inner" style={{ maxWidth: '1100px' }}>
           <h2 className="avail-title">{r.availTitle}</h2>
 
-          <BungalowCard
-            name={r.bungalow1}
-            bed={r.bungalow1Bed}
-            image="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp"
-            r={r}
-            selected={selectedBungalow === 'deluxe'}
-            onSelect={() => setSelectedBungalow('deluxe')}
-          />
+          {/* BIG CAROUSEL */}
+          <div className="reservar-carousel" style={{ marginTop: 0, height: '500px', borderRadius: '1rem', overflow: 'hidden', marginBottom: '2rem' }}>
+            <div className="reservar-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+              {carouselImageSrcs.map((src, i) => (
+                <div key={i} className="reservar-carousel-slide">
+                  <img src={src} alt={captions[i]} />
+                  <div className="reservar-carousel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 40%)' }}>
+                    <div style={{ width: '100%' }}>
+                      <p style={{ fontSize: '1.1rem' }}>{captions[i]}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="reservar-nav prev" onClick={prevSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8249;</button>
+            <button className="reservar-nav next" onClick={nextSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8250;</button>
+            <div className="reservar-dots">
+              {carouselImageSrcs.map((_, i) => (
+                <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
+              ))}
+            </div>
+          </div>
 
-          <BungalowCard
-            name={r.bungalow2}
-            bed={r.bungalow2Bed}
-            image="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior2.webp"
-            r={r}
-            selected={selectedBungalow === 'deluxe-jardin'}
-            onSelect={() => setSelectedBungalow('deluxe-jardin')}
-          />
+          {/* BUNGALOW DETAILS */}
+          <div style={{ background: 'var(--color-white)', borderRadius: '1rem', padding: '2rem', boxShadow: '0 2px 15px rgba(0,0,0,0.08)' }}>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>{r.bungalowName}</h3>
+            <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>{r.bungalowDesc}</p>
+
+            <div className="bcard-tags" style={{ marginBottom: '1rem' }}>
+              {r.tags.map((tag, i) => (
+                <span key={i} className="bcard-tag">{tag}</span>
+              ))}
+            </div>
+
+            <button className="bcard-more" type="button" onClick={() => setShowExtras(!showExtras)} style={{ marginBottom: '1rem' }}>
+              {showExtras ? '▲ Menos' : '▼ Mas'}
+            </button>
+            {showExtras && (
+              <div className="bcard-extras" style={{ marginBottom: '1rem' }}>
+                {r.extras.map((ex, i) => (
+                  <div key={i} className="bcard-extra">✓ {ex}</div>
+                ))}
+              </div>
+            )}
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid var(--color-bg-alt)' }}>
+              <div>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--color-text)' }}>CRC 54,303</div>
+                <div style={{ color: 'var(--color-text-light)', fontSize: '0.9rem' }}>{r.pricePerNight}</div>
+                <div style={{ color: 'var(--color-text-light)', fontSize: '0.85rem' }}>+ CRC 7,059 {r.taxes}</div>
+              </div>
+
+              <div style={{ flex: 1, minWidth: '250px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>✔</span>
+                  <span>{r.benefit1}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>✔</span>
+                  <span><strong>{r.benefit2}</strong> {r.benefit2sub}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>✔</span>
+                  <span><strong>{r.benefit3}</strong> - {r.benefit3sub}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: 'var(--color-gold)', fontWeight: 'bold' }}>✔</span>
+                  <span>{r.benefit4}</span>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  className="btn-primary"
+                  type="button"
+                  onClick={scrollToForm}
+                  style={{ border: 'none', fontSize: '1.1rem', padding: '1rem 2.5rem' }}
+                >
+                  {r.submit}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* RESERVATION FORM */}
-      <section className="section section-alt">
+      <section id="reservation-form" className="section section-alt">
         <div className="section-inner">
           <div className="reservation-wrapper">
             <div className="reservation-form-section">
@@ -176,9 +177,35 @@ export default function Reservar() {
 
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
-                <DatePicker label={r.checkIn} value={checkIn} onChange={(val) => setCheckIn(val)} />
-                <DatePicker label={r.checkOut} value={checkOut} onChange={(val) => setCheckOut(val)} minDate={checkIn} />
+                <DatePicker
+                  label={r.checkIn}
+                  value={checkIn}
+                  onChange={(val) => {
+                    setCheckIn(val);
+                    if (checkOut && val >= checkOut) setCheckOut('');
+                  }}
+                  rangeStart={checkIn}
+                  rangeEnd={checkOut}
+                />
+                <DatePicker
+                  label={r.checkOut}
+                  value={checkOut}
+                  onChange={(val) => setCheckOut(val)}
+                  minDate={checkIn}
+                  rangeStart={checkIn}
+                  rangeEnd={checkOut}
+                />
               </div>
+
+              {checkIn && checkOut && (
+                <div style={{ background: 'var(--color-white)', borderRadius: '0.75rem', padding: '1rem 1.5rem', marginBottom: '1rem', border: '1px solid var(--color-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem' }}>📅</span>
+                  <span>
+                    <strong>{Math.round((new Date(checkOut + 'T00:00:00') - new Date(checkIn + 'T00:00:00')) / (1000 * 60 * 60 * 24))}</strong>
+                    {' '}{lang === 'es' ? 'noches' : lang === 'en' ? 'nights' : lang === 'fr' ? 'nuits' : 'Nachte'}
+                  </span>
+                </div>
+              )}
 
               <div className="form-row">
                 <div className="form-group">
@@ -187,22 +214,26 @@ export default function Reservar() {
                     <option value="">{r.guestsSelect}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label>{r.fullName}</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-group">
                   <label>{r.email}</label>
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="form-group">
                   <label>{r.phone}</label>
-                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                 </div>
               </div>
 

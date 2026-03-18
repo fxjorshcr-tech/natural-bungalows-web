@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
-export default function DatePicker({ value, onChange, label, minDate }) {
+export default function DatePicker({ value, onChange, label, minDate, rangeStart, rangeEnd }) {
   const [open, setOpen] = useState(false);
   const [viewDate, setViewDate] = useState(() => {
     if (value) {
@@ -82,6 +82,21 @@ export default function DatePicker({ value, onChange, label, minDate }) {
     return viewDate.year === y && viewDate.month === m - 1 && day === d;
   };
 
+  const getDayRangeClass = (day) => {
+    if (!rangeStart || !rangeEnd) return '';
+    const current = new Date(viewDate.year, viewDate.month, day);
+    const start = new Date(rangeStart + 'T00:00:00');
+    const end = new Date(rangeEnd + 'T00:00:00');
+
+    if (current.getTime() === start.getTime() && current.getTime() === end.getTime()) {
+      return ' range-start range-end';
+    }
+    if (current.getTime() === start.getTime()) return ' range-start';
+    if (current.getTime() === end.getTime()) return ' range-end';
+    if (current > start && current < end) return ' in-range';
+    return '';
+  };
+
   return (
     <div className="form-group" ref={ref}>
       <label>{label}</label>
@@ -113,11 +128,12 @@ export default function DatePicker({ value, onChange, label, minDate }) {
                 const disabled = isDisabled(day);
                 const selected = isSelected(day);
                 const todayClass = isToday(day);
+                const rangeClass = getDayRangeClass(day);
                 return (
                   <button
                     key={day}
                     type="button"
-                    className={`date-picker-day${selected ? ' selected' : ''}${todayClass ? ' today' : ''}${disabled ? ' disabled' : ''}`}
+                    className={`date-picker-day${selected ? ' selected' : ''}${todayClass ? ' today' : ''}${disabled ? ' disabled' : ''}${rangeClass}`}
                     onClick={() => !disabled && selectDay(day)}
                     disabled={disabled}
                   >

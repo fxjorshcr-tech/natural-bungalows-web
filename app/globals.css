@@ -2250,6 +2250,40 @@ a {
   cursor: default;
 }
 
+.date-picker-day.in-range {
+  background: rgba(44, 85, 48, 0.12);
+  border-radius: 4px;
+  color: var(--color-primary);
+}
+
+.date-picker-day.range-start {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 50% 4px 4px 50%;
+}
+
+.date-picker-day.range-end {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 4px 50% 50% 4px;
+}
+
+.date-picker-day.range-start.range-end {
+  border-radius: 50%;
+}
+
+/* Founders section responsive */
+@media (max-width: 768px) {
+  .about-founders-section {
+    grid-template-columns: 1fr !important;
+  }
+  .about-founders-section > div:first-child {
+    min-height: 300px !important;
+  }
+}
+
 /* ============================================
    SOCIAL MEDIA BUTTONS (Footer)
    ============================================ */

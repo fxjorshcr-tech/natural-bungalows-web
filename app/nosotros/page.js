@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import ContactForm from '../components/ContactForm';
+
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Nosotros() {
@@ -40,8 +40,8 @@ export default function Nosotros() {
             </div>
             <div className="about-img">
               <img
-                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior4.webp"
-                alt="Natura Bungalows"
+                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/joseyyansy_natural.jpg"
+                alt="Jose y Yancy - Natura Bungalows"
               />
             </div>
           </div>
@@ -131,17 +131,6 @@ export default function Nosotros() {
         </div>
       </section>
 
-      <section className="section section-alt">
-        <div className="section-inner">
-          <div className="section-header">
-            <h2>{p.writeTitle}</h2>
-            <p>{p.writeSub}</p>
-          </div>
-          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <ContactForm />
-          </div>
-        </div>
-      </section>
     </>
   );
 }
