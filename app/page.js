@@ -16,7 +16,7 @@ const galleryImages = [
   { src: 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior9.webp', alt: 'Vista panoramica' },
 ];
 
-const activityIcons = ['🌊', '🌋', '♨️', '🌿', '🚡', '🚣', '🦜', '🐴', '🎯'];
+const activityIcons = ['👨‍🍳', '🌋', '♨️', '🌿', '🚡', '🚣', '🦜', '🐴', '🍫'];
 const amenityIcons = ['📶', '🅿️', '❄️', '🍳', '🌋', '📺', '☀️', '🛁'];
 
 const reviews = [
@@ -385,6 +385,18 @@ export default function HomePage() {
             </div>
           </div>
           <ContactForm />
+        </div>
+        <div style={{ marginTop: '3rem', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0!2d-84.6!3d10.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e3726cd7a835%3A0x2b0e4a7d3f8b1c5a!2sNatura%20Bungalows!5e0!3m2!1ses!2scr!4v1710000000000"
+            width="100%"
+            height="350"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Natura Bungalows - Ubicacion"
+          ></iframe>
         </div>
       </section>
     </>
