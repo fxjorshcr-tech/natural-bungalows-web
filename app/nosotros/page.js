@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import ContactForm from '../components/ContactForm';
+
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Nosotros() {
@@ -131,17 +131,6 @@ export default function Nosotros() {
         </div>
       </section>
 
-      <section className="section section-alt">
-        <div className="section-inner">
-          <div className="section-header">
-            <h2>{p.writeTitle}</h2>
-            <p>{p.writeSub}</p>
-          </div>
-          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <ContactForm />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

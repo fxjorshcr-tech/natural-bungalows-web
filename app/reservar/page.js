@@ -54,13 +54,26 @@ export default function Reservar() {
 
   return (
     <>
-      {/* STATIC HERO IMAGE */}
+      {/* HERO */}
       <div className="page-hero" style={{ minHeight: '50vh' }}>
         <div className="page-hero-bg">
           <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp" alt="Natura Bungalows" />
         </div>
         <div className="page-hero-overlay" />
-        <h1>{r.title}</h1>
+        <img
+          src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/Gemini_Generated_Image_xi7racxi7racxi7r%20(1).png"
+          alt="Natura Bungalows"
+          style={{ height: '80px', width: 'auto', marginBottom: '1rem', filter: 'brightness(0) invert(1)', position: 'relative', zIndex: 2 }}
+        />
+        <p style={{ position: 'relative', zIndex: 2, color: 'rgba(255,255,255,0.85)', fontSize: '1.1rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>La Fortuna, Costa Rica</p>
+        <h1 style={{ position: 'relative', zIndex: 2 }}>{r.title}</h1>
+        <button
+          type="button"
+          onClick={scrollToForm}
+          style={{ position: 'relative', zIndex: 2, marginTop: '1.5rem', background: 'transparent', border: '2px solid rgba(255,255,255,0.6)', color: 'white', padding: '0.8rem 2rem', borderRadius: '50px', cursor: 'pointer', fontSize: '0.95rem', letterSpacing: '0.05em', transition: 'all 0.3s ease', fontFamily: 'var(--font-body)' }}
+        >
+          {r.submit}
+        </button>
       </div>
 
       {/* BUNGALOW INFO WITH CAROUSEL */}
