@@ -109,12 +109,6 @@ export default function HomePage() {
             className="hero-logo"
           />
           <p>{heroT.subtitle}</p>
-          <div className="hero-rating">
-            ★★★★★ {heroT.rating}
-          </div>
-          <Link href="/reservar" className="btn-primary">
-            {heroT.cta}
-          </Link>
         </div>
       </section>
 
@@ -174,15 +168,15 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="about-text-block" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ flex: '0 0 auto' }}>
+          <div className="about-founders-section" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', marginTop: '2rem', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+            <div style={{ position: 'relative', minHeight: '400px' }}>
               <img
                 src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/joseyyansy_natural.jpg"
                 alt="Jose y Yancy - Natura Bungalows"
-                style={{ width: '220px', height: '220px', objectFit: 'cover', borderRadius: '1rem', boxShadow: '0 4px 15px rgba(0,0,0,0.15)' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
             </div>
-            <div style={{ flex: 1, minWidth: '280px' }}>
+            <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--color-white)' }}>
               <h3>{aboutT.foundersName}</h3>
               <p className="about-enhanced-subtitle">{aboutT.foundersRole}</p>
               <p>{aboutT.foundersP1}</p>
