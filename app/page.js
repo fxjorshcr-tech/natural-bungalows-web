@@ -174,11 +174,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="about-text-block">
-            <h3>{aboutT.foundersName}</h3>
-            <p className="about-enhanced-subtitle">{aboutT.foundersRole}</p>
-            <p>{aboutT.foundersP1}</p>
-            <p>{aboutT.foundersP2}</p>
+          <div className="about-text-block" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ flex: '0 0 auto' }}>
+              <img
+                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/joseyyansy_natural.jpg"
+                alt="Jose y Yancy - Natura Bungalows"
+                style={{ width: '220px', height: '220px', objectFit: 'cover', borderRadius: '1rem', boxShadow: '0 4px 15px rgba(0,0,0,0.15)' }}
+              />
+            </div>
+            <div style={{ flex: 1, minWidth: '280px' }}>
+              <h3>{aboutT.foundersName}</h3>
+              <p className="about-enhanced-subtitle">{aboutT.foundersRole}</p>
+              <p>{aboutT.foundersP1}</p>
+              <p>{aboutT.foundersP2}</p>
+            </div>
           </div>
 
           <div className="about-enhanced-cta">
@@ -381,6 +390,20 @@ export default function HomePage() {
               <div>
                 <strong>{contactT.langLabel}</strong>
                 <p>{contactT.langValue}</p>
+              </div>
+            </div>
+            <div className="contact-info-item">
+              <span>📧</span>
+              <div>
+                <strong>{contactT.emailLabel}</strong>
+                <p><a href="mailto:Naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>Naturabungalowscr@gmail.com</a></p>
+              </div>
+            </div>
+            <div className="contact-info-item">
+              <span>📞</span>
+              <div>
+                <strong>{contactT.phoneLabel}</strong>
+                <p><a href="tel:+50689180449" style={{ color: 'inherit' }}>8918-0449</a> / <a href="tel:+50660462621" style={{ color: 'inherit' }}>6046-2621</a></p>
               </div>
             </div>
           </div>

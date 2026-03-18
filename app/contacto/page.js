@@ -62,6 +62,20 @@ export default function Contacto() {
                   <p>{c.parkingValue}</p>
                 </div>
               </div>
+              <div className="contact-info-item">
+                <span>📧</span>
+                <div>
+                  <strong>Email</strong>
+                  <p><a href="mailto:Naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>Naturabungalowscr@gmail.com</a></p>
+                </div>
+              </div>
+              <div className="contact-info-item">
+                <span>📞</span>
+                <div>
+                  <strong>{c.phoneLabel}</strong>
+                  <p><a href="tel:+50689180449" style={{ color: 'inherit' }}>8918-0449</a> / <a href="tel:+50660462621" style={{ color: 'inherit' }}>6046-2621</a></p>
+                </div>
+              </div>
             </div>
             <div>
               <ContactForm />

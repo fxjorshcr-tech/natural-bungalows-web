@@ -15,76 +15,7 @@ const carouselImageSrcs = [
   'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior6.webp',
 ];
 
-function BungalowCard({ name, bed, image, r, onSelect, selected }) {
-  const [showExtras, setShowExtras] = useState(false);
-
-  return (
-    <div className={`bcard${selected ? ' bcard-selected' : ''}`}>
-      <div className="bcard-main">
-        <div className="bcard-info">
-          <div className="bcard-img">
-            <img src={image} alt={name} />
-          </div>
-          <h3 className="bcard-name">{name}</h3>
-          <p className="bcard-bed">{bed}</p>
-          <div className="bcard-tags">
-            {r.tags.map((tag, i) => (
-              <span key={i} className="bcard-tag">{tag}</span>
-            ))}
-          </div>
-          <button className="bcard-more" type="button" onClick={() => setShowExtras(!showExtras)}>
-            {showExtras ? '▲ Menos' : '▼ Mas'}
-          </button>
-          {showExtras && (
-            <div className="bcard-extras">
-              {r.extras.map((ex, i) => (
-                <div key={i} className="bcard-extra">✓ {ex}</div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="bcard-price">
-          <div className="bcard-price-amount">CRC 54,303</div>
-          <div className="bcard-price-per">{r.pricePerNight}</div>
-          <div className="bcard-price-tax">+ CRC 7,059 {r.taxes}</div>
-        </div>
-
-        <div className="bcard-benefits">
-          <div className="bcard-benefit">
-            <span className="bcard-check">✔</span>
-            <span>{r.benefit1}</span>
-          </div>
-          <div className="bcard-benefit">
-            <span className="bcard-check">✔</span>
-            <span><strong>{r.benefit2}</strong> {r.benefit2sub}</span>
-          </div>
-          <div className="bcard-benefit">
-            <span className="bcard-check">✔</span>
-            <span><strong>{r.benefit3}</strong> - {r.benefit3sub}</span>
-          </div>
-          <div className="bcard-benefit">
-            <span className="bcard-check-alt">✔</span>
-            <span>{r.benefit4}</span>
-          </div>
-        </div>
-
-        <div className="bcard-action">
-          <button
-            className={`bcard-select-btn${selected ? ' selected' : ''}`}
-            type="button"
-            onClick={onSelect}
-          >
-            {selected ? '✓' : r.selectBtn}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Reservar() {
-  const [selectedBungalow, setSelectedBungalow] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('');
@@ -94,6 +25,7 @@ export default function Reservar() {
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showExtras, setShowExtras] = useState(false);
   const { lang, t } = useLanguage();
   const r = t.reservarPage[lang];
   const captions = t.carouselCaptions[lang];
@@ -114,6 +46,10 @@ export default function Reservar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSent(true);
+  };
+
+  const scrollToForm = () => {
+    document.getElementById('reservation-form').scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -141,33 +77,77 @@ export default function Reservar() {
         </div>
       </div>
 
-      {/* BUNGALOW SELECTION */}
+      {/* BUNGALOW INFO */}
       <section className="section">
         <div className="section-inner" style={{ maxWidth: '1100px' }}>
           <h2 className="avail-title">{r.availTitle}</h2>
 
-          <BungalowCard
-            name={r.bungalow1}
-            bed={r.bungalow1Bed}
-            image="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp"
-            r={r}
-            selected={selectedBungalow === 'deluxe'}
-            onSelect={() => setSelectedBungalow('deluxe')}
-          />
+          <div className="bcard">
+            <div className="bcard-main">
+              <div className="bcard-info">
+                <div className="bcard-img">
+                  <img src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp" alt={r.bungalowName} />
+                </div>
+                <h3 className="bcard-name">{r.bungalowName}</h3>
+                <p className="bcard-bed">{r.bungalowDesc}</p>
+                <div className="bcard-tags">
+                  {r.tags.map((tag, i) => (
+                    <span key={i} className="bcard-tag">{tag}</span>
+                  ))}
+                </div>
+                <button className="bcard-more" type="button" onClick={() => setShowExtras(!showExtras)}>
+                  {showExtras ? '▲ Menos' : '▼ Mas'}
+                </button>
+                {showExtras && (
+                  <div className="bcard-extras">
+                    {r.extras.map((ex, i) => (
+                      <div key={i} className="bcard-extra">✓ {ex}</div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-          <BungalowCard
-            name={r.bungalow2}
-            bed={r.bungalow2Bed}
-            image="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior2.webp"
-            r={r}
-            selected={selectedBungalow === 'deluxe-jardin'}
-            onSelect={() => setSelectedBungalow('deluxe-jardin')}
-          />
+              <div className="bcard-price">
+                <div className="bcard-price-amount">CRC 54,303</div>
+                <div className="bcard-price-per">{r.pricePerNight}</div>
+                <div className="bcard-price-tax">+ CRC 7,059 {r.taxes}</div>
+              </div>
+
+              <div className="bcard-benefits">
+                <div className="bcard-benefit">
+                  <span className="bcard-check">✔</span>
+                  <span>{r.benefit1}</span>
+                </div>
+                <div className="bcard-benefit">
+                  <span className="bcard-check">✔</span>
+                  <span><strong>{r.benefit2}</strong> {r.benefit2sub}</span>
+                </div>
+                <div className="bcard-benefit">
+                  <span className="bcard-check">✔</span>
+                  <span><strong>{r.benefit3}</strong> - {r.benefit3sub}</span>
+                </div>
+                <div className="bcard-benefit">
+                  <span className="bcard-check-alt">✔</span>
+                  <span>{r.benefit4}</span>
+                </div>
+              </div>
+
+              <div className="bcard-action">
+                <button
+                  className="bcard-select-btn"
+                  type="button"
+                  onClick={scrollToForm}
+                >
+                  {r.submit}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* RESERVATION FORM */}
-      <section className="section section-alt">
+      <section id="reservation-form" className="section section-alt">
         <div className="section-inner">
           <div className="reservation-wrapper">
             <div className="reservation-form-section">
@@ -187,22 +167,26 @@ export default function Reservar() {
                     <option value="">{r.guestsSelect}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label>{r.fullName}</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-group">
                   <label>{r.email}</label>
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="form-group">
                   <label>{r.phone}</label>
-                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                 </div>
               </div>
 

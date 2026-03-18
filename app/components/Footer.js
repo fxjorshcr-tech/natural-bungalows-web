@@ -45,6 +45,8 @@ export default function Footer() {
           <ul className="footer-links">
             <li>La Fortuna, San Carlos</li>
             <li>Costa Rica</li>
+            <li><a href="mailto:Naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>Naturabungalowscr@gmail.com</a></li>
+            <li><a href="tel:+50689180449" style={{ color: 'inherit' }}>8918-0449</a> / <a href="tel:+50660462621" style={{ color: 'inherit' }}>6046-2621</a></li>
             <li>{f.checkin}</li>
             <li>{f.checkout}</li>
           </ul>

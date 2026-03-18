@@ -40,8 +40,8 @@ export default function Nosotros() {
             </div>
             <div className="about-img">
               <img
-                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior4.webp"
-                alt="Natura Bungalows"
+                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/joseyyansy_natural.jpg"
+                alt="Jose y Yancy - Natura Bungalows"
               />
             </div>
           </div>
