@@ -89,7 +89,7 @@ export default function Contacto() {
         <div className="section-inner">
           <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0!2d-84.6!3d10.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e3726cd7a835%3A0x2b0e4a7d3f8b1c5a!2sNatura%20Bungalows!5e0!3m2!1ses!2scr!4v1710000000000"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1964.5!2d-84.6386379!3d10.4532233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa00dbdc844fbcd%3A0x333cbd45ea676f20!2sNatura%20Bungalows!5e0!3m2!1ses!2scr!4v1710000000000"
               width="100%"
               height="450"
               style={{ border: 0 }}
