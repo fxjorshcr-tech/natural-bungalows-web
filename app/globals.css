@@ -2024,7 +2024,7 @@ a {
 
 @media (max-width: 768px) {
   .about-features-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 }
