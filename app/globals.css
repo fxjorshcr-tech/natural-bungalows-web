@@ -26,6 +26,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -330,19 +332,25 @@ a {
 .mobile-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .mobile-toggle span {
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: var(--color-white);
   transition: all 0.3s ease;
   transform-origin: center;
+  display: block;
 }
 
 .header.scrolled .mobile-toggle span {
@@ -375,10 +383,11 @@ a {
   background: rgba(250, 247, 242, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 6rem 2rem 2rem;
+  padding: 5rem 1.5rem 2rem;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.25rem;
   z-index: 999;
 }
 
@@ -387,14 +396,14 @@ a {
 }
 
 .mobile-menu a {
-  font-size: 1.3rem;
-  padding: 0.8rem 2rem;
+  font-size: 1.15rem;
+  padding: 0.7rem 1.5rem;
   color: var(--color-text);
   transition: color 0.3s ease;
   font-weight: 500;
   text-align: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   border-radius: 12px;
 }
 
@@ -417,18 +426,19 @@ a {
   }
   .header-inner {
     justify-content: space-between !important;
+    padding: 0 1rem;
   }
   .header-home .header-inner {
     justify-content: flex-end !important;
   }
   .logo-img {
-    height: 60px;
+    height: 40px;
   }
   .header {
-    height: 70px;
+    height: 56px;
   }
   .header-home {
-    height: 60px;
+    height: 50px;
   }
 }
 
@@ -622,10 +632,14 @@ a {
 
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem 1.5rem;
+    padding: 3rem 1rem;
+    overflow-x: hidden;
+  }
+  .section-inner {
+    overflow-x: hidden;
   }
   .section-header h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -1142,9 +1156,27 @@ a {
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1rem 1.5rem;
+  }
   .footer-inner {
     grid-template-columns: 1fr;
     gap: 2rem;
+    text-align: center;
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+  .footer-links li {
+    justify-content: center;
+  }
+  .footer-links a {
+    word-break: break-all;
   }
 }
 
@@ -2122,11 +2154,13 @@ a {
     gap: 2rem;
   }
   .page-hero {
-    padding-top: calc(70px + 3rem);
-    padding-bottom: 3rem;
+    padding-top: calc(56px + 2rem);
+    padding-bottom: 2.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   .page-hero h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }
 
