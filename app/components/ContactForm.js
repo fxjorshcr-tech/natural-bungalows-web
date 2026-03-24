@@ -5,13 +5,36 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 export default function ContactForm({ compact = false }) {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const { lang, t } = useLanguage()
   const cf = t.contactForm[lang]
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setSending(true)
+    setError(false)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: 'Nuevo mensaje de contacto - Natura Bungalows',
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      })
+      if (res.ok) {
+        setSent(true)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    }
+    setSending(false)
   }
 
   if (sent) {
@@ -60,8 +83,9 @@ export default function ContactForm({ compact = false }) {
           onChange={(e) => setForm({ ...form, message: e.target.value })}
         />
       </div>
-      <button type="submit" className="btn-primary" style={{ border: 'none', fontFamily: 'var(--font-body)' }}>
-        {cf.send}
+      {error && <p style={{ color: '#c0392b', marginBottom: '0.5rem' }}>Error al enviar. Intenta de nuevo.</p>}
+      <button type="submit" className="btn-primary" style={{ border: 'none', fontFamily: 'var(--font-body)', opacity: sending ? 0.6 : 1 }} disabled={sending}>
+        {sending ? '...' : cf.send}
       </button>
     </form>
   )

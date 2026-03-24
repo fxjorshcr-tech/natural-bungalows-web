@@ -2387,3 +2387,166 @@ a {
     height: 50px;
   }
 }
+
+/* ============ WILDLIFE PAGE ============ */
+
+.wildlife-title-section {
+  padding-top: calc(var(--header-height) + 3rem);
+  padding-bottom: 2rem;
+  text-align: center;
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+}
+
+.wildlife-title-section h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.wildlife-title-section p {
+  font-size: 1.15rem;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.wildlife-text-block {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.wildlife-text-block p {
+  color: var(--color-text-light);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* Photo grids */
+.wl-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.wl-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.wl-photo {
+  border-radius: 14px;
+  overflow: hidden;
+  height: 350px;
+}
+
+.wl-photo-tall {
+  height: 450px;
+}
+
+.wl-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.wl-photo:hover img {
+  transform: scale(1.04);
+}
+
+/* Stats */
+.wildlife-stats-section {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
+  padding: 4rem 0;
+}
+
+.wildlife-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.wildlife-stat-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.wildlife-stat-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+/* Wildlife responsive */
+@media (max-width: 900px) {
+  .wildlife-title-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .wl-grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wl-grid-3 .wl-photo:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .wl-photo {
+    height: 280px;
+  }
+
+  .wl-photo-tall {
+    height: 350px;
+  }
+
+  .wildlife-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .wildlife-title-section {
+    padding-top: calc(56px + 2rem);
+    padding-bottom: 1.5rem;
+  }
+
+  .wildlife-title-section h1 {
+    font-size: 2rem;
+  }
+
+  .wl-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .wl-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .wl-grid-3 .wl-photo:last-child {
+    grid-column: auto;
+  }
+
+  .wl-photo {
+    height: 300px;
+  }
+
+  .wl-photo-tall {
+    height: 350px;
+  }
+
+  .wildlife-stat-number {
+    font-size: 2.25rem;
+  }
+}

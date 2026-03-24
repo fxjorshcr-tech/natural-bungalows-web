@@ -7,6 +7,9 @@ import Providers from './components/Providers'
 export const metadata = {
   title: 'Natura Bungalows | La Fortuna, Costa Rica',
   description: 'Bungalows de lujo con vistas al Volcan Arenal en La Fortuna de San Carlos, Costa Rica. Rodeados de naturaleza, confort y tranquilidad.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({ children }) {

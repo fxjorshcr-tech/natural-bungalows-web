@@ -36,6 +36,7 @@ export default function Header() {
           <nav className="nav">
             <Link href="/">{nav.inicio}</Link>
             <Link href="/nosotros">{nav.nosotros}</Link>
+            <Link href="/vida-silvestre">{nav.fauna}</Link>
             <Link href="/contacto">{nav.contacto}</Link>
             <Link href="/reservar" className="btn-reservar">{nav.reservar}</Link>
           </nav>
@@ -57,6 +58,7 @@ export default function Header() {
         </div>
         <Link href="/" onClick={closeMenu}>{nav.inicio}</Link>
         <Link href="/nosotros" onClick={closeMenu}>{nav.nosotros}</Link>
+        <Link href="/vida-silvestre" onClick={closeMenu}>{nav.fauna}</Link>
         <Link href="/contacto" onClick={closeMenu}>{nav.contacto}</Link>
         <Link href="/reservar" onClick={closeMenu} className="btn-reservar" style={{ textAlign: 'center' }}>{nav.reservar}</Link>
       </div>
