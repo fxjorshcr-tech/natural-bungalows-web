@@ -3,35 +3,33 @@
 import Link from 'next/link';
 import { useLanguage } from '../i18n/LanguageContext';
 
-const HERO_IMG = 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp';
+const AVES = [
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves1.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves2.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves3.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves4.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves5.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves6.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves7.jpg',
+];
 
-const PHOTOS = {
-  aves: [
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves1.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves2.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves3.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves4.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves5.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves6.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves7.jpg',
-  ],
-  nocturna: [
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-1.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-2.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-3.jpg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-4.jpg',
-  ],
-  otros: [
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.35%20PM%20(1)%20-%20copia.jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.35%20PM%20(2)%20-%20copia.jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.35%20PM%20(3)%20-%20copia.jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(1).jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(2).jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(3).jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(4).jpeg',
-    'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(5).jpeg',
-  ],
-};
+const NOCTURNA = [
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-1.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-2.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-3.jpg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/caminata-nocturna-4.jpg',
+];
+
+const OTROS = [
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.35%20PM%20(1)%20-%20copia.jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.35%20PM%20(2)%20-%20copia.jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.35%20PM%20(3)%20-%20copia.jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(1).jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(2).jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(3).jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(4).jpeg',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/WhatsApp%20Image%202026-03-23%20at%207.32.36%20PM%20(5).jpeg',
+];
 
 export default function VidaSilvestre() {
   const { lang, t } = useLanguage();
@@ -39,34 +37,33 @@ export default function VidaSilvestre() {
 
   return (
     <>
-      {/* Hero */}
-      <div className="page-hero wildlife-hero">
-        <div className="page-hero-bg">
-          <img src={HERO_IMG} alt="Vida Silvestre - Natura Bungalows" />
-        </div>
-        <div className="page-hero-overlay" />
+      {/* Title - no hero, just clean title with spacing for header */}
+      <div className="wildlife-title-section">
         <h1>{p.heroTitle}</h1>
         <p>{p.heroSub}</p>
       </div>
 
-      {/* Intro */}
+      {/* Intro + first birds */}
       <section className="section">
         <div className="section-inner">
-          <div className="wildlife-intro">
-            <div className="wildlife-intro-text">
-              <h2>{p.introTitle}</h2>
-              <p>{p.introP1}</p>
-              <p>{p.introP2}</p>
-            </div>
-            <div className="wildlife-intro-mosaic">
-              <img src={PHOTOS.aves[1]} alt={p.birdAlt} className="mosaic-main" />
-              <img src={PHOTOS.aves[2]} alt={p.birdAlt} className="mosaic-secondary" />
-            </div>
+          <div className="section-header">
+            <h2>{p.introTitle}</h2>
+          </div>
+          <div className="wildlife-text-block">
+            <p>{p.introP1}</p>
+          </div>
+          <div className="wl-grid-3">
+            <div className="wl-photo"><img src={AVES[0]} alt={p.birdAlt} /></div>
+            <div className="wl-photo"><img src={AVES[1]} alt={p.birdAlt} /></div>
+            <div className="wl-photo"><img src={AVES[2]} alt={p.birdAlt} /></div>
+          </div>
+          <div className="wildlife-text-block">
+            <p>{p.introP2}</p>
           </div>
         </div>
       </section>
 
-      {/* Birds - Costa Rica Biodiversity */}
+      {/* Birds section */}
       <section className="section section-alt">
         <div className="section-inner">
           <div className="section-header">
@@ -76,25 +73,16 @@ export default function VidaSilvestre() {
           <div className="wildlife-text-block">
             <p>{p.birdsP1}</p>
           </div>
-          <div className="wildlife-birds-grid">
-            <div className="wildlife-birds-item">
-              <img src={PHOTOS.aves[0]} alt={p.birdAlt} />
-            </div>
-            <div className="wildlife-birds-item">
-              <img src={PHOTOS.aves[3]} alt={p.birdAlt} />
-            </div>
-            <div className="wildlife-birds-item">
-              <img src={PHOTOS.aves[4]} alt={p.birdAlt} />
-            </div>
-            <div className="wildlife-birds-item">
-              <img src={PHOTOS.aves[5]} alt={p.birdAlt} />
-            </div>
-            <div className="wildlife-birds-item">
-              <img src={PHOTOS.aves[6]} alt={p.birdAlt} />
-            </div>
+          <div className="wl-grid-2">
+            <div className="wl-photo wl-photo-tall"><img src={AVES[3]} alt={p.birdAlt} /></div>
+            <div className="wl-photo wl-photo-tall"><img src={AVES[4]} alt={p.birdAlt} /></div>
           </div>
           <div className="wildlife-text-block">
             <p>{p.birdsP2}</p>
+          </div>
+          <div className="wl-grid-2">
+            <div className="wl-photo wl-photo-tall"><img src={AVES[5]} alt={p.birdAlt} /></div>
+            <div className="wl-photo wl-photo-tall"><img src={AVES[6]} alt={p.birdAlt} /></div>
           </div>
         </div>
       </section>
@@ -133,20 +121,21 @@ export default function VidaSilvestre() {
           <div className="wildlife-text-block">
             <p>{p.nightP1}</p>
           </div>
-          <div className="wildlife-grid-4">
-            {PHOTOS.nocturna.map((src, i) => (
-              <div key={i} className="wildlife-grid-item">
-                <img src={src} alt={p.nightAlt} />
-              </div>
-            ))}
+          <div className="wl-grid-2">
+            <div className="wl-photo wl-photo-tall"><img src={NOCTURNA[0]} alt={p.nightAlt} /></div>
+            <div className="wl-photo wl-photo-tall"><img src={NOCTURNA[1]} alt={p.nightAlt} /></div>
           </div>
           <div className="wildlife-text-block">
             <p>{p.nightP2}</p>
           </div>
+          <div className="wl-grid-2">
+            <div className="wl-photo wl-photo-tall"><img src={NOCTURNA[2]} alt={p.nightAlt} /></div>
+            <div className="wl-photo wl-photo-tall"><img src={NOCTURNA[3]} alt={p.nightAlt} /></div>
+          </div>
         </div>
       </section>
 
-      {/* More Wildlife */}
+      {/* More Wildlife - ALL 8 otros photos */}
       <section className="section section-alt">
         <div className="section-inner">
           <div className="section-header">
@@ -156,15 +145,22 @@ export default function VidaSilvestre() {
           <div className="wildlife-text-block">
             <p>{p.moreP1}</p>
           </div>
-          <div className="wildlife-masonry">
-            {PHOTOS.otros.map((src, i) => (
-              <div key={i} className="wildlife-masonry-item">
-                <img src={src} alt={p.wildlifeAlt} />
-              </div>
-            ))}
+          <div className="wl-grid-2">
+            <div className="wl-photo wl-photo-tall"><img src={OTROS[0]} alt={p.wildlifeAlt} /></div>
+            <div className="wl-photo wl-photo-tall"><img src={OTROS[1]} alt={p.wildlifeAlt} /></div>
+          </div>
+          <div className="wl-grid-3">
+            <div className="wl-photo"><img src={OTROS[2]} alt={p.wildlifeAlt} /></div>
+            <div className="wl-photo"><img src={OTROS[3]} alt={p.wildlifeAlt} /></div>
+            <div className="wl-photo"><img src={OTROS[4]} alt={p.wildlifeAlt} /></div>
           </div>
           <div className="wildlife-text-block">
             <p>{p.moreP2}</p>
+          </div>
+          <div className="wl-grid-3">
+            <div className="wl-photo"><img src={OTROS[5]} alt={p.wildlifeAlt} /></div>
+            <div className="wl-photo"><img src={OTROS[6]} alt={p.wildlifeAlt} /></div>
+            <div className="wl-photo"><img src={OTROS[7]} alt={p.wildlifeAlt} /></div>
           </div>
         </div>
       </section>
