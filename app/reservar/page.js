@@ -43,9 +43,37 @@ export default function Reservar() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  const handleSubmit = (e) => {
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setError(false);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: 'Nueva solicitud de reserva - Natura Bungalows',
+          name,
+          email,
+          phone,
+          message,
+          checkin: checkIn,
+          checkout: checkOut,
+          guests,
+        }),
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    }
+    setSending(false);
   };
 
   const scrollToForm = () => {
@@ -242,7 +270,8 @@ export default function Reservar() {
                 <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
               </div>
 
-              <button type="submit" className="btn-primary">{r.submit}</button>
+              {error && <p style={{ color: '#c0392b', marginBottom: '0.5rem' }}>Error al enviar. Intenta de nuevo.</p>}
+              <button type="submit" className="btn-primary" style={{ opacity: sending ? 0.6 : 1 }} disabled={sending}>{sending ? '...' : r.submit}</button>
             </form>
 
             {sent && (
