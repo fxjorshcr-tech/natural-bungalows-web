@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useLanguage } from '../i18n/LanguageContext';
 
+const HERO_IMG = 'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior3.webp';
+
 const PHOTOS = {
   aves: [
     'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos%20animales/aves1.jpg',
@@ -40,7 +42,7 @@ export default function VidaSilvestre() {
       {/* Hero */}
       <div className="page-hero wildlife-hero">
         <div className="page-hero-bg">
-          <img src={PHOTOS.aves[0]} alt="Vida Silvestre - Natura Bungalows" />
+          <img src={HERO_IMG} alt="Vida Silvestre - Natura Bungalows" />
         </div>
         <div className="page-hero-overlay" />
         <h1>{p.heroTitle}</h1>
@@ -74,20 +76,25 @@ export default function VidaSilvestre() {
           <div className="wildlife-text-block">
             <p>{p.birdsP1}</p>
           </div>
-          <div className="wildlife-photo-collage">
-            <div className="collage-large">
+          <div className="wildlife-birds-grid">
+            <div className="wildlife-birds-item">
+              <img src={PHOTOS.aves[0]} alt={p.birdAlt} />
+            </div>
+            <div className="wildlife-birds-item">
               <img src={PHOTOS.aves[3]} alt={p.birdAlt} />
             </div>
-            <div className="collage-stack">
+            <div className="wildlife-birds-item">
               <img src={PHOTOS.aves[4]} alt={p.birdAlt} />
+            </div>
+            <div className="wildlife-birds-item">
               <img src={PHOTOS.aves[5]} alt={p.birdAlt} />
+            </div>
+            <div className="wildlife-birds-item">
+              <img src={PHOTOS.aves[6]} alt={p.birdAlt} />
             </div>
           </div>
           <div className="wildlife-text-block">
             <p>{p.birdsP2}</p>
-          </div>
-          <div className="wildlife-full-img">
-            <img src={PHOTOS.aves[6]} alt={p.birdAlt} />
           </div>
         </div>
       </section>
