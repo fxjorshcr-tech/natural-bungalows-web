@@ -36,6 +36,7 @@ export default function Footer() {
           <ul className="footer-links">
             <li><Link href="/">{nav.inicio}</Link></li>
             <li><Link href="/nosotros">{nav.nosotros}</Link></li>
+            <li><Link href="/vida-silvestre">{nav.fauna}</Link></li>
             <li><Link href="/contacto">{nav.contacto}</Link></li>
             <li><Link href="/reservar">{nav.reservar}</Link></li>
           </ul>
