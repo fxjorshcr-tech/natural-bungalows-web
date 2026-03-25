@@ -1014,6 +1014,43 @@ a {
   background-clip: content-box;
 }
 
+@media (max-width: 768px) {
+  .reviews-wrapper {
+    margin: 0 -0.25rem;
+  }
+  .review-card {
+    padding: 0 0.5rem;
+  }
+  .review-card-inner {
+    padding: 1.5rem;
+  }
+  .review-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .carousel-controls {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  .carousel-dots {
+    gap: 0.2rem;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    padding: 5px;
+  }
+  .carousel-dot.active {
+    width: 18px;
+  }
+}
+
 /* ============================================
    CONTACT FORM
    ============================================ */
