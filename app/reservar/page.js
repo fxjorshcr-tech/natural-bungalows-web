@@ -21,6 +21,7 @@ export default function Reservar() {
   const [guests, setGuests] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneCode, setPhoneCode] = useState('+506');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
@@ -58,7 +59,7 @@ export default function Reservar() {
           subject: 'Nueva solicitud de reserva - Natura Bungalows',
           name,
           email,
-          phone,
+          phone: `${phoneCode} ${phone}`,
           message,
           checkin: checkIn,
           checkout: checkOut,
@@ -274,7 +275,41 @@ export default function Reservar() {
                 </div>
                 <div className="form-group">
                   <label>{r.phone}</label>
-                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <select
+                      value={phoneCode}
+                      onChange={(e) => setPhoneCode(e.target.value)}
+                      style={{ width: '120px', flexShrink: 0, padding: '0.75rem 0.5rem', borderRadius: '0.5rem', border: '1px solid #ddd', background: 'var(--color-white)', fontFamily: 'var(--font-body)', fontSize: '0.95rem' }}
+                    >
+                      <option value="+506">🇨🇷 +506</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+52">🇲🇽 +52</option>
+                      <option value="+34">🇪🇸 +34</option>
+                      <option value="+57">🇨🇴 +57</option>
+                      <option value="+56">🇨🇱 +56</option>
+                      <option value="+54">🇦🇷 +54</option>
+                      <option value="+55">🇧🇷 +55</option>
+                      <option value="+51">🇵🇪 +51</option>
+                      <option value="+593">🇪🇨 +593</option>
+                      <option value="+507">🇵🇦 +507</option>
+                      <option value="+505">🇳🇮 +505</option>
+                      <option value="+502">🇬🇹 +502</option>
+                      <option value="+503">🇸🇻 +503</option>
+                      <option value="+504">🇭🇳 +504</option>
+                      <option value="+33">🇫🇷 +33</option>
+                      <option value="+49">🇩🇪 +49</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+39">🇮🇹 +39</option>
+                      <option value="+31">🇳🇱 +31</option>
+                      <option value="+41">🇨🇭 +41</option>
+                      <option value="+61">🇦🇺 +61</option>
+                      <option value="+81">🇯🇵 +81</option>
+                      <option value="+86">🇨🇳 +86</option>
+                      <option value="+82">🇰🇷 +82</option>
+                      <option value="+91">🇮🇳 +91</option>
+                    </select>
+                    <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required style={{ flex: 1 }} />
+                  </div>
                 </div>
               </div>
 
@@ -283,7 +318,7 @@ export default function Reservar() {
                 <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
               </div>
 
-              {error && <p style={{ color: '#c0392b', marginBottom: '0.5rem' }}>Error al enviar. Intenta de nuevo.</p>}
+              {error && <p style={{ color: '#c0392b', marginBottom: '0.5rem' }}>{lang === 'es' ? 'Error al enviar. Intenta de nuevo.' : lang === 'en' ? 'Error sending. Please try again.' : lang === 'fr' ? 'Erreur d\'envoi. Veuillez reessayer.' : 'Fehler beim Senden. Bitte versuchen Sie es erneut.'}</p>}
               <button type="submit" className="btn-primary" style={{ opacity: sending ? 0.6 : 1 }} disabled={sending}>{sending ? '...' : r.submit}</button>
             </form>
 

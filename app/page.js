@@ -31,6 +31,14 @@ const reviews = [
   { name: 'Rosa', country: 'España', text: 'El bungalow es una maravilla. La zona es muy tranquila, solo hay 3 bungalows. La habitacion es preciosa con todo nuevo.' },
 ];
 
+const heroImages = [
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior7.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior9.webp',
+  'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior10.webp',
+];
+
 const aboutCarouselImgs = [
   'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/interior.webp',
   'https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior5.webp',
@@ -44,9 +52,11 @@ const aboutCarouselImgs = [
 
 export default function HomePage() {
   const [lightboxImage, setLightboxImage] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const [currentReview, setCurrentReview] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
   const [aboutSlide, setAboutSlide] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);
   const { lang, t } = useLanguage();
 
   const heroT = t.hero[lang];
@@ -91,15 +101,26 @@ export default function HomePage() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* HERO */}
       <section className="hero">
         <div className="hero-bg">
-          <img
-            src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/natura-boungalows/exterior11.webp"
-            alt="Natura Bungalows - Vista exterior"
-          />
+          {heroImages.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`Natura Bungalows ${i + 1}`}
+              className={`hero-carousel-img${i === heroSlide ? ' active' : ''}`}
+            />
+          ))}
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -207,7 +228,7 @@ export default function HomePage() {
             <div
               key={index}
               className="gallery-item"
-              onClick={() => setLightboxImage(image.src)}
+              onClick={() => { setLightboxImage(image.src); setLightboxIndex(index); }}
             >
               <img src={image.src} alt={image.alt} />
             </div>
@@ -226,11 +247,31 @@ export default function HomePage() {
             >
               <span aria-hidden="true">✕</span>
             </button>
+            <button
+              className="lightbox-nav lightbox-prev"
+              aria-label="Anterior"
+              onClick={(e) => {
+                e.stopPropagation();
+                const prev = (lightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+                setLightboxIndex(prev);
+                setLightboxImage(galleryImages[prev].src);
+              }}
+            >&#8249;</button>
             <img
               src={lightboxImage}
               alt="Galeria ampliada"
               onClick={(e) => e.stopPropagation()}
             />
+            <button
+              className="lightbox-nav lightbox-next"
+              aria-label="Siguiente"
+              onClick={(e) => {
+                e.stopPropagation();
+                const next = (lightboxIndex + 1) % galleryImages.length;
+                setLightboxIndex(next);
+                setLightboxImage(galleryImages[next].src);
+              }}
+            >&#8250;</button>
           </div>
         )}
 
@@ -393,7 +434,7 @@ export default function HomePage() {
               <span>📧</span>
               <div>
                 <strong>{contactT.emailLabel}</strong>
-                <p><a href="mailto:Naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>Naturabungalowscr@gmail.com</a></p>
+                <p><a href="mailto:naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>naturabungalowscr@gmail.com</a></p>
               </div>
             </div>
             <div className="contact-info-item">
