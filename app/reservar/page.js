@@ -168,7 +168,6 @@ export default function Reservar() {
               <div className="price-block">
                 <div className="price-amount">₡50,000</div>
                 <div className="price-per">{r.pricePerNight}</div>
-                <div className="price-tax">+ ₡6,500 {r.taxes}</div>
               </div>
 
               <div className="benefits-list">
