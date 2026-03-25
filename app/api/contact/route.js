@@ -6,9 +6,9 @@ export async function POST(request) {
     const accessKey = process.env.WEB3FORMS_KEY;
 
     if (!accessKey) {
-      console.error('WEB3FORMS_KEY environment variable is not set. Please add it in Vercel > Settings > Environment Variables.');
+      console.error('WEB3FORMS_KEY environment variable is not set.');
       return NextResponse.json(
-        { error: 'Email service not configured. WEB3FORMS_KEY is missing.' },
+        { error: 'Email service not configured.' },
         { status: 500 }
       );
     }
@@ -16,7 +16,6 @@ export async function POST(request) {
     const payload = {
       access_key: accessKey,
       from_name: 'Natura Bungalows Web',
-      to: 'naturabungalowscr@gmail.com',
       subject: body.subject || 'Nuevo mensaje desde la web',
       name: body.name,
       email: body.email,
@@ -30,9 +29,23 @@ export async function POST(request) {
 
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
+
+    const contentType = response.headers.get('content-type') || '';
+
+    if (!contentType.includes('application/json')) {
+      const text = await response.text();
+      console.error('Web3Forms returned non-JSON response:', response.status, text.substring(0, 200));
+      return NextResponse.json(
+        { error: 'Email service returned an unexpected response.' },
+        { status: 502 }
+      );
+    }
 
     const data = await response.json();
 
@@ -42,7 +55,7 @@ export async function POST(request) {
 
     console.error('Web3Forms error:', data);
     return NextResponse.json(
-      { error: 'Failed to send message' },
+      { error: data.message || 'Failed to send message' },
       { status: 500 }
     );
   } catch (err) {
