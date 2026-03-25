@@ -109,6 +109,7 @@ export default function HomePage() {
             className="hero-logo"
           />
           <p>{heroT.subtitle}</p>
+          <Link href="/reservar" className="hero-cta-btn">{heroT.cta}</Link>
         </div>
       </section>
 
@@ -128,11 +129,11 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            <button className="reservar-nav prev" onClick={() => setAboutSlide((prev) => (prev - 1 + aboutCarouselImgs.length) % aboutCarouselImgs.length)}>&#8249;</button>
-            <button className="reservar-nav next" onClick={() => setAboutSlide((prev) => (prev + 1) % aboutCarouselImgs.length)}>&#8250;</button>
+            <button className="reservar-nav prev" aria-label="Anterior" onClick={() => setAboutSlide((prev) => (prev - 1 + aboutCarouselImgs.length) % aboutCarouselImgs.length)}>&#8249;</button>
+            <button className="reservar-nav next" aria-label="Siguiente" onClick={() => setAboutSlide((prev) => (prev + 1) % aboutCarouselImgs.length)}>&#8250;</button>
             <div className="reservar-dots" style={{ bottom: '1.2rem' }}>
               {aboutCarouselImgs.map((_, i) => (
-                <button key={i} className={`reservar-dot${i === aboutSlide ? ' active' : ''}`} onClick={() => setAboutSlide(i)} />
+                <button key={i} className={`reservar-dot${i === aboutSlide ? ' active' : ''}`} aria-label={`Imagen ${i + 1}`} onClick={() => setAboutSlide(i)} />
               ))}
             </div>
           </div>
@@ -141,28 +142,28 @@ export default function HomePage() {
             <div className="about-feature-card">
               <span className="about-feature-icon">🏡</span>
               <div>
-                <h4>{aboutT.feat1Title}</h4>
+                <h3>{aboutT.feat1Title}</h3>
                 <p>{aboutT.feat1Desc}</p>
               </div>
             </div>
             <div className="about-feature-card">
               <span className="about-feature-icon">⭐</span>
               <div>
-                <h4>{aboutT.feat2Title}</h4>
+                <h3>{aboutT.feat2Title}</h3>
                 <p>{aboutT.feat2Desc}</p>
               </div>
             </div>
             <div className="about-feature-card">
               <span className="about-feature-icon">🌋</span>
               <div>
-                <h4>{aboutT.feat3Title}</h4>
+                <h3>{aboutT.feat3Title}</h3>
                 <p>{aboutT.feat3Desc}</p>
               </div>
             </div>
             <div className="about-feature-card">
               <span className="about-feature-icon">🇨🇷</span>
               <div>
-                <h4>{aboutT.feat4Title}</h4>
+                <h3>{aboutT.feat4Title}</h3>
                 <p>{aboutT.feat4Desc}</p>
               </div>
             </div>
@@ -217,12 +218,13 @@ export default function HomePage() {
           <div className="lightbox" onClick={() => setLightboxImage(null)}>
             <button
               className="lightbox-close"
+              aria-label="Cerrar"
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxImage(null);
               }}
             >
-              ✕
+              <span aria-hidden="true">✕</span>
             </button>
             <img
               src={lightboxImage}
@@ -327,7 +329,7 @@ export default function HomePage() {
                       {review.name.charAt(0)}
                     </div>
                     <div className="review-author-info">
-                      <h4>{review.name}</h4>
+                      <h3 className="review-name">{review.name}</h3>
                       <span>{review.country}</span>
                     </div>
                   </div>
@@ -338,7 +340,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="carousel-controls">
-          <button className="carousel-btn" onClick={prevReview}>
+          <button className="carousel-btn" aria-label="Anterior" onClick={prevReview}>
             ←
           </button>
           <div className="carousel-dots">
@@ -346,11 +348,12 @@ export default function HomePage() {
               <button
                 key={index}
                 className={`carousel-dot${index === currentReview ? ' active' : ''}`}
+                aria-label={`Pagina ${index + 1}`}
                 onClick={() => setCurrentReview(index)}
               />
             ))}
           </div>
-          <button className="carousel-btn" onClick={nextReview}>
+          <button className="carousel-btn" aria-label="Siguiente" onClick={nextReview}>
             →
           </button>
         </div>

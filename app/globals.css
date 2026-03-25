@@ -9,7 +9,7 @@
   --color-bg: #FAF7F2;
   --color-bg-alt: #F0EBE3;
   --color-text: #2D2D2D;
-  --color-text-light: #6B6B6B;
+  --color-text-light: #595959;
   --color-white: #FFFFFF;
   --color-gold: #E8B94A;
   --font-heading: 'Playfair Display', Georgia, serif;
@@ -336,9 +336,9 @@ a {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
-  width: 36px;
-  height: 36px;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -516,6 +516,26 @@ a {
   letter-spacing: 0.15em;
   margin-bottom: 2rem;
   opacity: 0.9;
+}
+
+.hero-cta-btn {
+  display: inline-block;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  color: var(--color-white);
+  padding: 0.85rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.hero-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 1);
 }
 
 .hero-rating {
@@ -903,9 +923,11 @@ a {
   font-size: 0.9rem;
 }
 
-.review-author-info h4 {
+.review-author-info h3.review-name {
   font-size: 0.9rem;
   font-weight: 600;
+  font-family: var(--font-body);
+  margin: 0;
 }
 
 .review-author-info span {
@@ -956,20 +978,23 @@ a {
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(44, 85, 48, 0.2);
+  background: rgba(44, 85, 48, 0.25);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0;
+  padding: 8px;
+  box-sizing: content-box;
+  background-clip: content-box;
 }
 
 .carousel-dot.active {
   background: var(--color-primary);
   width: 24px;
   border-radius: 4px;
+  background-clip: content-box;
 }
 
 /* ============================================
@@ -982,6 +1007,7 @@ a {
   align-items: start;
 }
 
+.contact-info h2,
 .contact-info h3 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
@@ -1418,7 +1444,7 @@ a {
 
 .bcard-price-tax {
   font-size: 0.75rem;
-  color: #999;
+  color: #767676;
 }
 
 /* Benefits column */
@@ -1521,6 +1547,120 @@ a {
     padding-bottom: 1.25rem;
   }
   .bcard-select-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Amenities Grid */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.6rem;
+}
+
+.amenity-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg-alt);
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  transition: background 0.2s ease;
+}
+
+.amenity-chip:hover {
+  background: rgba(44, 85, 48, 0.08);
+}
+
+.amenity-chip-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+/* Price & Benefits Bar */
+.price-benefits-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, rgba(44, 85, 48, 0.04) 0%, rgba(44, 85, 48, 0.08) 100%);
+  border-top: 1px solid rgba(44, 85, 48, 0.1);
+}
+
+.price-block {
+  flex-shrink: 0;
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.1;
+}
+
+.price-per {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-top: 0.15rem;
+}
+
+.price-tax {
+  font-size: 0.8rem;
+  color: #767676;
+  margin-top: 0.2rem;
+}
+
+.benefits-list {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.benefit-check {
+  color: var(--color-primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.benefit-check.gold {
+  color: var(--color-gold, #b8860b);
+}
+
+.price-cta {
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .amenities-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .price-benefits-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.5rem;
+  }
+
+  .price-cta {
+    width: 100%;
+  }
+
+  .price-cta .btn-primary {
     width: 100%;
     text-align: center;
   }
@@ -1834,13 +1974,15 @@ a {
 }
 
 .reservar-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 8px;
+  box-sizing: content-box;
+  background-clip: content-box;
   transition: all 0.3s ease;
 }
 
@@ -1848,6 +1990,7 @@ a {
   background: white;
   width: 20px;
   border-radius: 4px;
+  background-clip: content-box;
 }
 
 /* ============================================
@@ -1962,7 +2105,7 @@ a {
   border-radius: 12px;
 }
 
-.about-feature-card h4 {
+.about-feature-card h3 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text);
