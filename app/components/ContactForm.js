@@ -16,17 +16,23 @@ export default function ContactForm({ compact = false }) {
     setSending(true)
     setError(false)
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
         body: JSON.stringify({
+          access_key: '352c48f5-1fdd-425b-bda4-98105464dcc5',
+          from_name: 'Natura Bungalows Web',
           subject: 'Nuevo mensaje de contacto - Natura Bungalows',
           name: form.name,
           email: form.email,
           message: form.message,
         }),
       })
-      if (res.ok) {
+      const data = await res.json()
+      if (data.success) {
         setSent(true)
       } else {
         setError(true)

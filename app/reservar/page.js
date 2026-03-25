@@ -52,10 +52,15 @@ export default function Reservar() {
     setSending(true);
     setError(false);
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
         body: JSON.stringify({
+          access_key: '352c48f5-1fdd-425b-bda4-98105464dcc5',
+          from_name: 'Natura Bungalows Web',
           subject: 'Nueva solicitud de reserva - Natura Bungalows',
           name,
           email,
@@ -66,7 +71,8 @@ export default function Reservar() {
           guests,
         }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setSent(true);
         setShowModal(true);
       } else {
