@@ -1,0 +1,22 @@
+# Natura Bungalows
+
+> Bungalows de lujo con vistas al Volcán Arenal en La Fortuna de San Carlos, Costa Rica. Solo 3 bungalows para máxima privacidad. Puntuación 9.7/10 en Booking.com.
+
+## Páginas
+
+- [Inicio](/): Página principal con galería, amenidades, actividades, reseñas y formulario de contacto.
+- [Reservar](/reservar): Información de bungalows, precios, disponibilidad y formulario de reservación.
+- [Nosotros](/nosotros): Historia de los fundadores José y Yancy, misión y valores del proyecto familiar.
+- [Contacto](/contacto): Formulario de contacto, ubicación, mapa, información de cercanías y distancias.
+- [Vida Silvestre](/vida-silvestre): Galería fotográfica de aves, fauna nocturna y biodiversidad local.
+
+## Información de contacto
+
+- Ubicación: La Fortuna, San Carlos, Alajuela, Costa Rica
+- Email: naturabungalowscr@gmail.com
+- Teléfono: +506 8918-0449 / +506 6046-2621
+- Idiomas: Español, English, Français, Deutsch
+
+## Detalles completos
+
+Para más información, consulta [llms-full.txt](/llms-full.txt).
