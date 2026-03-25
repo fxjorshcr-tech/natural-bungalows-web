@@ -1,4 +1,4 @@
-const BASE_URL = process.env.SITE_URL || 'https://natural-bungalows-web.vercel.app'
+const BASE_URL = 'https://naturabungalowscr.com'
 
 export default function robots() {
   return {

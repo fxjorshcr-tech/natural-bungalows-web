@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import Providers from './components/Providers'
 
-const BASE_URL = process.env.SITE_URL || 'https://natural-bungalows-web.vercel.app'
+const BASE_URL = 'https://naturabungalowscr.com'
 
 export const metadata = {
   metadataBase: new URL(BASE_URL),
