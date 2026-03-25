@@ -25,7 +25,6 @@ export default function Reservar() {
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [showExtras, setShowExtras] = useState(false);
   const { lang, t } = useLanguage();
   const r = t.reservarPage[lang];
   const captions = t.carouselCaptions[lang];
@@ -123,69 +122,80 @@ export default function Reservar() {
                 </div>
               ))}
             </div>
-            <button className="reservar-nav prev" onClick={prevSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8249;</button>
-            <button className="reservar-nav next" onClick={nextSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8250;</button>
+            <button className="reservar-nav prev" aria-label="Anterior" onClick={prevSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8249;</button>
+            <button className="reservar-nav next" aria-label="Siguiente" onClick={nextSlide} style={{ width: '50px', height: '50px', fontSize: '1.5rem' }}>&#8250;</button>
             <div className="reservar-dots">
               {carouselImageSrcs.map((_, i) => (
-                <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} onClick={() => setCurrentSlide(i)} />
+                <button key={i} className={`reservar-dot${i === currentSlide ? ' active' : ''}`} aria-label={`Imagen ${i + 1}`} onClick={() => setCurrentSlide(i)} />
               ))}
             </div>
           </div>
 
           {/* BUNGALOW DETAILS */}
-          <div style={{ background: 'var(--color-white)', borderRadius: '1rem', padding: '2rem', boxShadow: '0 2px 15px rgba(0,0,0,0.08)' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>{r.bungalowName}</h3>
-            <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>{r.bungalowDesc}</p>
-
-            <div className="bcard-tags" style={{ marginBottom: '1rem' }}>
-              {r.tags.map((tag, i) => (
-                <span key={i} className="bcard-tag">{tag}</span>
-              ))}
+          <div style={{ background: 'var(--color-white)', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 2px 15px rgba(0,0,0,0.08)' }}>
+            {/* Header */}
+            <div style={{ padding: '2rem 2rem 1.5rem' }}>
+              <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', color: 'var(--color-primary-dark)', marginBottom: '0.3rem' }}>{r.bungalowName}</h3>
+              <p style={{ color: 'var(--color-text-light)', margin: 0 }}>{r.bungalowDesc}</p>
             </div>
 
-            <button className="bcard-more" type="button" onClick={() => setShowExtras(!showExtras)} style={{ marginBottom: '1rem' }}>
-              {showExtras ? '▲ Menos' : '▼ Mas'}
-            </button>
-            {showExtras && (
-              <div className="bcard-extras" style={{ marginBottom: '1rem' }}>
-                {r.extras.map((ex, i) => (
-                  <div key={i} className="bcard-extra">✓ {ex}</div>
-                ))}
+            {/* Amenities Grid */}
+            <div style={{ padding: '0 2rem 1.5rem' }}>
+              <div className="amenities-grid">
+                {r.tags.map((tag, i) => {
+                  const icons = ['🏡', '📐', '🍳', '🚿', '🌅', '🌿', '⛰️', '❄️', '🪴', '📺', '☀️', '☕', '📶'];
+                  return (
+                    <div key={i} className="amenity-chip">
+                      <span className="amenity-chip-icon">{icons[i] || '✦'}</span>
+                      <span>{tag}</span>
+                    </div>
+                  );
+                })}
+                {r.extras.map((ex, i) => {
+                  const extraIcons = ['🧴', '🔪', '🎬', '🛁', '🛏️', '🧊', '♨️', '🍴', '🍞', '💨'];
+                  return (
+                    <div key={`ex-${i}`} className="amenity-chip">
+                      <span className="amenity-chip-icon">{extraIcons[i] || '✦'}</span>
+                      <span>{ex}</span>
+                    </div>
+                  );
+                })}
               </div>
-            )}
+            </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid var(--color-bg-alt)' }}>
-              <div>
-                <div style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--color-text)' }}>CRC 54,303</div>
-                <div style={{ color: 'var(--color-text-light)', fontSize: '0.9rem' }}>{r.pricePerNight}</div>
-                <div style={{ color: 'var(--color-text-light)', fontSize: '0.85rem' }}>+ CRC 7,059 {r.taxes}</div>
+            {/* Price & Benefits Bar */}
+            <div className="price-benefits-bar">
+              <div className="price-block">
+                <div className="price-amount">₡50,000</div>
+                <div className="price-per">{r.pricePerNight}</div>
+                <div className="price-tax">+ ₡6,500 {r.taxes}</div>
               </div>
 
-              <div style={{ flex: 1, minWidth: '250px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                  <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>✔</span>
+              <div className="benefits-list">
+                <div className="benefit-item">
+                  <span className="benefit-check">✔</span>
                   <span>{r.benefit1}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                  <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>✔</span>
+                <div className="benefit-item">
+                  <span className="benefit-check">✔</span>
                   <span><strong>{r.benefit2}</strong> {r.benefit2sub}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                  <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>✔</span>
-                  <span><strong>{r.benefit3}</strong> - {r.benefit3sub}</span>
+                <div className="benefit-item">
+                  <span className="benefit-check">✔</span>
+                  <span><strong>{r.benefit3}</strong> — {r.benefit3sub}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ color: 'var(--color-gold)', fontWeight: 'bold' }}>✔</span>
+                <div className="benefit-item">
+                  <span className="benefit-check gold">✔</span>
                   <span>{r.benefit4}</span>
                 </div>
               </div>
 
-              <div>
+              <div className="price-cta">
                 <button
                   className="btn-primary"
                   type="button"
                   onClick={scrollToForm}
-                  style={{ border: 'none', fontSize: '1.1rem', padding: '1rem 2.5rem' }}
+                  style={{ border: 'none', fontSize: '1.1rem', padding: '1rem 2.5rem', whiteSpace: 'nowrap' }}
                 >
                   {r.submit}
                 </button>

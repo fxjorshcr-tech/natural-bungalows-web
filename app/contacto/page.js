@@ -26,7 +26,7 @@ export default function Contacto() {
         <div className="section-inner">
           <div className="contact-section">
             <div className="contact-info">
-              <h3>{c.infoTitle}</h3>
+              <h2>{c.infoTitle}</h2>
               <div className="contact-info-item">
                 <span>📍</span>
                 <div>
