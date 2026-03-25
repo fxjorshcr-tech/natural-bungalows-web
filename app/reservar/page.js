@@ -44,6 +44,7 @@ export default function Reservar() {
 
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,6 +67,7 @@ export default function Reservar() {
       });
       if (res.ok) {
         setSent(true);
+        setShowModal(true);
       } else {
         setError(true);
       }
@@ -74,6 +76,8 @@ export default function Reservar() {
     }
     setSending(false);
   };
+
+  const closeModal = () => setShowModal(false);
 
   const scrollToForm = () => {
     document.getElementById('reservation-form').scrollIntoView({ behavior: 'smooth' });
@@ -283,15 +287,23 @@ export default function Reservar() {
               <button type="submit" className="btn-primary" style={{ opacity: sending ? 0.6 : 1 }} disabled={sending}>{sending ? '...' : r.submit}</button>
             </form>
 
-            {sent && (
-              <div className="form-success">
-                <h3>{r.sentTitle}</h3>
-                <p>{r.sentMsg}</p>
-              </div>
-            )}
           </div>
         </div>
       </section>
+
+      {/* Confirmation Modal */}
+      {showModal && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-icon">✓</div>
+            <h3 className="modal-title">{r.sentTitle}</h3>
+            <p className="modal-message">{r.sentMsg}</p>
+            <button className="btn-primary modal-close-btn" onClick={closeModal}>
+              {lang === 'es' ? 'Cerrar' : lang === 'en' ? 'Close' : lang === 'fr' ? 'Fermer' : 'Schließen'}
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
