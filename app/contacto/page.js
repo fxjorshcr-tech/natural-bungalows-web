@@ -66,7 +66,7 @@ export default function Contacto() {
                 <span>📧</span>
                 <div>
                   <strong>Email</strong>
-                  <p><a href="mailto:Naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>Naturabungalowscr@gmail.com</a></p>
+                  <p><a href="mailto:naturabungalowscr@gmail.com" style={{ color: 'inherit' }}>naturabungalowscr@gmail.com</a></p>
                 </div>
               </div>
               <div className="contact-info-item">
