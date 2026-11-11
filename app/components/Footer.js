@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useLanguage } from '../i18n/LanguageContext'
+import PoweredByMaxDigital from './PoweredByMaxDigital'
 
 export default function Footer() {
   const { lang, t } = useLanguage()
@@ -69,6 +70,9 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         &copy; {new Date().getFullYear()} Natura Bungalows. {f.rights}
+      </div>
+      <div style={{ marginTop: '2rem' }}>
+        <PoweredByMaxDigital />
       </div>
     </footer>
   )
